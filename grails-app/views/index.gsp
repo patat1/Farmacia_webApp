@@ -7,10 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-		  rel="stylesheet" type="text/css">
-	<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
-		  rel="stylesheet" type="text/css">
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -25,27 +22,13 @@
 			</button>
 			<a class="navbar-brand" href="/Farmacia_WebApp/"><span>Farmacie Regionali</span></a>
 		</div>
-		<g:if test="${session.user}">
-		<div class="collapse navbar-collapse" id="navbar-ex-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li >
-					<a href="#">Bentornato, ${session.user}</a>
-				</li>
-				<li class="active">
-					<a href="login/logout.gsp">Logout</a>
-				</li>
-			</ul>
-		</div>
-		</g:if>
-		<g:else>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active">
-						<a href="login/login.gsp">Accedi</a>
+						<a href="login/login.gsp">Accesso</a>
 					</li>
 				</ul>
 			</div>
-		</g:else>
 	</div>
 </div>
 <div class="section">

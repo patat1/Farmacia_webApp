@@ -7,10 +7,14 @@ class LoginController {
     def subscribe() {}
 
     def log_in = {
-        if (params.username== "admin" && params.password== "admin"){
-            session.user="admin"
-            redirect(uri:'/')
+        if (params.username== "PIEMONTE" && params.password== "regionepiemonte"){
+            session.user="regione"
+            redirect(controller: 'homepage_regione', action:'index')
         }
+            /*
+        else if() {
+
+        }*/
         else{
             flash.message="Errore: utente o password errati. Riprovare"
             redirect(action: "login")
@@ -20,9 +24,5 @@ class LoginController {
     def log_out = {
         session.user=null
         redirect(uri:'/')
-    }
-
-    def subscribe_newuser = {
-
     }
 }
