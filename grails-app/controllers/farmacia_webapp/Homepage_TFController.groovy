@@ -1,9 +1,9 @@
 package farmacia_webapp
 
-class Homepage_TSController {
+class Homepage_TFController {
 
     def index() {
-        if (session.usertype != "TS" ){
+        if (session.usertype != "TF" ){
             flash.message="Errore: login come Titolare non effettuato"
             session.user=null
             session.usertype=null

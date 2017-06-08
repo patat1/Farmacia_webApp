@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(Homepage_TSController)
-class Homepage_TSControllerSpec extends Specification {
+@TestFor(Homepage_TFController)
+class Homepage_TFControllerSpec extends Specification {
 
     def setup() {
     }

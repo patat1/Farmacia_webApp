@@ -15,8 +15,8 @@ class LoginController {
         }
         else if(UtenteTF.executeQuery("from UtenteTF where email=? AND password=?", [params.username, params.password])) {
             session.user=params.username
-            session.usertype="TS"
-            redirect(controller: 'homepage_ts', action:'index')
+            session.usertype="TF"
+            redirect(controller: 'homepage_TF', action:'index')
         }
         else{
             flash.message="Errore: utente o password errati. Riprovare"

@@ -42,7 +42,7 @@
 				<div class="col-md-6">
 					<h1>Farmacie Regionali</h1>
 					<h3>Un servizio comune</h3>
-					<g:if test="${session.user=="regione"}">
+					<g:if test="${session.usertype=="REG"}">
 						<h4>Effettuato accesso come Regione</h4>
 						<div class="row">
 							<div class="col-md-12">
@@ -51,6 +51,22 @@
 										<div class="row">
 											<div class="col-md-12">
 												<a class="btn btn-block btn-lg btn-primary" href="homepage_regione/index.gsp">Vai alla Home della Regione</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</g:if>
+					<g:if test="${session.usertype=="TF"}">
+						<h4>Effettuato accesso come Titolare di Farmacia</h4>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="section">
+									<div class="container-md-6">
+										<div class="row">
+											<div class="col-md-12">
+												<a class="btn btn-block btn-lg btn-primary" href="homepage_TF/index.gsp">Vai alla Home del Titolare</a>
 											</div>
 										</div>
 									</div>
