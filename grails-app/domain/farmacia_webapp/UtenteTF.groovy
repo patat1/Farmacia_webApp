@@ -1,7 +1,7 @@
 package farmacia_webapp
 
 class UtenteTF {
-    int id
+    String email
     String nome
     String cognome
     String password

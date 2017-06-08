@@ -13,44 +13,50 @@
     <schema id="7" parent="1" name="test"/>
     <schema id="8" parent="1" name="users_database"/>
     <table id="9" parent="2" name="utentetf"/>
-    <column id="10" parent="9" name="id">
+    <column id="10" parent="9" name="version">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="11" parent="9" name="version">
-      <Position>2</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="12" parent="9" name="cognome">
-      <Position>3</Position>
+    <column id="11" parent="9" name="cognome">
+      <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="13" parent="9" name="nome">
+    <column id="12" parent="9" name="nome">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="14" parent="9" name="password">
+    <column id="13" parent="9" name="password">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="15" parent="9" name="id_UNIQUE">
-      <ColNames>id</ColNames>
+    <column id="14" parent="9" name="email">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="9" name="id">
+      <Position>6</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <index id="16" parent="9" name="email_UNIQUE">
+      <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="16" parent="9" name="PRIMARY">
+    <key id="17" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
+      <ColNames>id
+email</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="17" parent="9" name="id_UNIQUE">
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>id_UNIQUE</UnderlyingIndexName>
+    <key id="18" parent="9" name="email_UNIQUE">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>email_UNIQUE</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>
