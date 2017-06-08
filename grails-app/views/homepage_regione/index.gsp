@@ -73,7 +73,7 @@
                                     <div class="container-md-6">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <a class="btn btn-block btn-lg btn-primary" href="../">Registra un Titolare</a>
+                                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeTF.gsp">Registra un Titolare</a>
                                             </div>
                                         </div>
                                     </div>
