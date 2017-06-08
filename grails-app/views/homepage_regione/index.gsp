@@ -60,20 +60,7 @@
                                     <div class="container-md-6">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <a class="btn btn-block btn-lg btn-primary">Registra una Farmacia Regionale</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="section">
-                                    <div class="container-md-6">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeTF.gsp">Registra un Titolare</a>
+                                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeTF.gsp">Registra una Farmacia Regionale</a>
                                             </div>
                                         </div>
                                     </div>

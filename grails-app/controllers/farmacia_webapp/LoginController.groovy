@@ -5,7 +5,6 @@ class LoginController {
 
     def login() { }
     def logout() { }
-    def subscribe() {}
 
     def log_in = {
         if (params.username== "PIEMONTE" && params.password== "regionepiemonte"){

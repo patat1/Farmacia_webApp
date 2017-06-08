@@ -36,8 +36,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Iscrizione nuovo Titolare</h1>
-                <h3>Inserire i dati</h3>
+                <h3>Iscrizione nuovo Titolare</h3>
+                <h4>Inserire i dati</h4>
                 <g:if test="${flash.message}">
                     <div class="alert alert-dismissable alert-warning">
                         ${flash.message}</div>
@@ -92,9 +92,45 @@
                         </div>
                     </div>
 
+                    <div class="section">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Registrazione di una nuova farmacia</h3>
+                                    <h4>Inserire i dati</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            <label for="namef" class="control-label">Nome</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="namef" placeholder="Nome" name="nomef">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            <label for="street" class="control-label">Via</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="street" placeholder="Via completa" name="via">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            <label for="telnum" class="control-label">Numero di telefono</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="telnum" placeholder="Numero" name="numero">
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">Procedi
+                            <button type="submit" class="btn btn-default">Procedi con la registrazione
                                 <i class="fa fa-fw fa-angle-right"></i>
                             </button>
                         </div>
