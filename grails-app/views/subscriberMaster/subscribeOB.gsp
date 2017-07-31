@@ -35,7 +35,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h3>Iscrizione nuovo Dottore</h3>
+                <h3>Iscrizione nuovo Operatore</h3>
                 <h4>Inserire i dati</h4>
                 <g:if test="${flash.message}">
                     <div class="alert alert-dismissable alert-warning">${flash.message}</div>
@@ -48,7 +48,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form class="form-horizontal" role="form" action="subDF" controller="SubscriberMasterController.groovy">
+                <form class="form-horizontal" role="form" action="subOB" controller="SubscriberMasterController.groovy">
                     <div class="form-group">
                         <div class="col-sm-2">
                             <label for="email" class="control-label">Indirizzo email (username)</label>

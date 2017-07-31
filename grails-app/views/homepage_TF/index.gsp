@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#">Accesso come ${session.user}</a>
+                        <a href="#">Accesso come ${session.userinfo}</a>
                     </li>
                     <li class="active">
                         <a controller="login" href="../login/logout.gsp">Logout</a>
@@ -61,6 +61,19 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeDF.gsp">Registra un Dottore di Farmacia</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="section">
+                                    <div class="container-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeOB.gsp">Registra un Operatore di Banco</a>
                                             </div>
                                         </div>
                                     </div>

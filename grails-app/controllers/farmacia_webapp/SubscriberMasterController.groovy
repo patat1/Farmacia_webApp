@@ -1,8 +1,5 @@
 package farmacia_webapp
 
-import farmacia_webapp.UtenteTF
-import farmacia_webapp.UtenteDF
-
 class SubscriberMasterController {
 
     def subscribeTF() {
@@ -14,6 +11,14 @@ class SubscriberMasterController {
         }
     }
     def subscribeDF() {
+        if (session.usertype != "TF"){
+            flash.message="Errore: login come Titolare non effettuato"
+            session.user=null
+            session.usertype=null
+            redirect (action: "login", controller: "login")
+        }
+    }
+    def subscribeOB() {
         if (session.usertype != "TF"){
             flash.message="Errore: login come Titolare non effettuato"
             session.user=null
@@ -76,6 +81,33 @@ class SubscriberMasterController {
         if (flash.message==""){
             session.newuser= params.nome+" "+params.cognome//usato per la conferma
             new UtenteDF(
+                    nome: params.nome,
+                    password: params.passworda,
+                    cognome: params.cognome,
+                    email: params.email,
+                    utenteTF_FK: session.user).save()
+            redirect(action: "confirmation")
+        }
+    }
+    def subOB = {
+        flash.message=""
+        if (params.nome=="" || params.cognome==""
+                ||params.passworda=="" || params.passwordb=="" || params.email==""){
+            flash.message= flash.message + "Errore: Riempire tutti i campi"
+            redirect(action: "subscribeOB")
+        }
+        if (params.passworda!=params.passwordb){
+            flash.message= flash.message + "Errore: le password non coincidono"
+            redirect(action: "subscribeOB")
+        }
+        if (UtenteDF.executeQuery("from UtenteDF where email = ?", [params.email])){
+            flash.message= flash.message + "Errore: l'email inserita risulta già associata ad un account"
+            redirect(action: "subscribeOB")
+        }
+
+        if (flash.message==""){
+            session.newuser= params.nome+" "+params.cognome//usato per la conferma
+            new UtenteOB(
                     nome: params.nome,
                     password: params.passworda,
                     cognome: params.cognome,
