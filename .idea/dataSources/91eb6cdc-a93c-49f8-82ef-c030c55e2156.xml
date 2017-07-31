@@ -13,46 +13,44 @@
     <schema id="7" parent="1" name="test"/>
     <schema id="8" parent="1" name="users_database"/>
     <table id="9" parent="2" name="farmacia"/>
-    <table id="10" parent="2" name="utentetf"/>
-    <column id="11" parent="9" name="id">
+    <table id="10" parent="2" name="utentedf"/>
+    <table id="11" parent="2" name="utentetf"/>
+    <column id="12" parent="9" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="12" parent="9" name="version">
-      <Position>3</Position>
+    <column id="13" parent="9" name="version">
+      <Position>2</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="13" parent="9" name="nome">
+    <column id="14" parent="9" name="nome">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="9" name="numtel">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="14" parent="9" name="numtel">
+    <column id="16" parent="9" name="via">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="15" parent="9" name="via">
+    <column id="17" parent="9" name="nome_tit">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="16" parent="9" name="titolareFarmacia">
-      <Position>2</Position>
+    <column id="18" parent="9" name="utenteTF_FK">
+      <Position>7</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="17" parent="9" name="nome_tit">
-      <Position>7</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="18" parent="9" name="TF_idx">
-      <ColNames>titolareFarmacia</ColNames>
-    </index>
     <index id="19" parent="9" name="nome_UNIQUE">
       <ColNames>nome</ColNames>
       <Unique>1</Unique>
@@ -65,71 +63,151 @@
       <ColNames>via</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="22" parent="9" name="PRIMARY">
+    <index id="22" parent="9" name="titolareFK_idx">
+      <ColNames>utenteTF_FK</ColNames>
+    </index>
+    <index id="23" parent="9" name="utenteTF_FK_UNIQUE">
+      <ColNames>utenteTF_FK</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="24" parent="9" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="23" parent="9" name="nome_UNIQUE">
+    <key id="25" parent="9" name="nome_UNIQUE">
       <ColNames>nome</ColNames>
       <UnderlyingIndexName>nome_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="24" parent="9" name="numtel_UNIQUE">
+    <key id="26" parent="9" name="numtel_UNIQUE">
       <ColNames>numtel</ColNames>
       <UnderlyingIndexName>numtel_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="25" parent="9" name="via_UNIQUE">
+    <key id="27" parent="9" name="via_UNIQUE">
       <ColNames>via</ColNames>
       <UnderlyingIndexName>via_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="26" parent="9" name="TF">
-      <ColNames>titolareFarmacia</ColNames>
+    <key id="28" parent="9" name="utenteTF_FK_UNIQUE">
+      <ColNames>utenteTF_FK</ColNames>
+      <UnderlyingIndexName>utenteTF_FK_UNIQUE</UnderlyingIndexName>
+    </key>
+    <foreign-key id="29" parent="9" name="titolareFK">
+      <ColNames>utenteTF_FK</ColNames>
       <RefSchemaName>FarmaciaWebAppDatabase</RefSchemaName>
       <RefTableName>utentetf</RefTableName>
       <RefColNames>email</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="27" parent="10" name="version">
-      <Position>6</Position>
-      <DataType>bigint(20)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="28" parent="10" name="cognome">
-      <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="29" parent="10" name="nome">
-      <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="30" parent="10" name="password">
-      <Position>5</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="31" parent="10" name="email">
-      <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="32" parent="10" name="id">
+    <column id="30" parent="10" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <index id="33" parent="10" name="email_UNIQUE">
+    <column id="31" parent="10" name="version">
+      <Position>2</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="10" name="cognome">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="10" name="email">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="10" name="nome">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="10" name="password">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="36" parent="10" name="utentetf_fk">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="37" parent="10" name="email_UNIQUE">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="34" parent="10" name="PRIMARY">
+    <index id="38" parent="10" name="Titolare_FK_idx">
+      <ColNames>utentetf_fk</ColNames>
+    </index>
+    <index id="39" parent="10" name="utentetf_fk_UNIQUE">
+      <ColNames>utentetf_fk</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="40" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="35" parent="10" name="email_UNIQUE">
+    <key id="41" parent="10" name="email_UNIQUE">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>email_UNIQUE</UnderlyingIndexName>
+    </key>
+    <key id="42" parent="10" name="utentetf_fk_UNIQUE">
+      <ColNames>utentetf_fk</ColNames>
+      <UnderlyingIndexName>utentetf_fk_UNIQUE</UnderlyingIndexName>
+    </key>
+    <foreign-key id="43" parent="10" name="titolare">
+      <ColNames>utentetf_fk</ColNames>
+      <RefSchemaName>FarmaciaWebAppDatabase</RefSchemaName>
+      <RefTableName>utentetf</RefTableName>
+      <RefColNames>email</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="44" parent="11" name="version">
+      <Position>6</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="11" name="cognome">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="11" name="nome">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="11" name="password">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="11" name="email">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="11" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <index id="50" parent="11" name="email_UNIQUE">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="51" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="52" parent="11" name="email_UNIQUE">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>email_UNIQUE</UnderlyingIndexName>
     </key>
