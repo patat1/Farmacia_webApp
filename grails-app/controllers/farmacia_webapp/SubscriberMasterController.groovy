@@ -41,7 +41,7 @@ class SubscriberMasterController {
                     nome: params.nomef,
                     via: params.via,
                     numtel: params.numero,
-                    nomeTit: params.nome + params.cognome,
+                    nomeTit: params.nome +" "+ params.cognome,
                     utenteTF_FK: params.email).save()
             redirect(action: "confirmation")
         }
