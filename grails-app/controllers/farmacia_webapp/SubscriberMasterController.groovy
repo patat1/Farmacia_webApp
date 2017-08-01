@@ -45,7 +45,7 @@ class SubscriberMasterController {
         }
 
         if (flash.message==""){
-            session.newuser= params.nome+" "+params.cognome//usato per la conferma
+            session.newuser= params.nomef//usato per la conferma
             new UtenteTF(
                     nome: params.nome,
                     password: params.passworda,
@@ -100,7 +100,7 @@ class SubscriberMasterController {
             flash.message= flash.message + "Errore: le password non coincidono"
             redirect(action: "subscribeOB")
         }
-        if (UtenteDF.executeQuery("from UtenteDF where email = ?", [params.email])){
+        if (UtenteDF.executeQuery("from UtenteOB where email = ?", [params.email])){
             flash.message= flash.message + "Errore: l'email inserita risulta già associata ad un account"
             redirect(action: "subscribeOB")
         }
