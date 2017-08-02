@@ -56,15 +56,7 @@
                         <h1>Operazioni disponibili per un Operatore di Banco:</h1>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="section">
-                                    <div class="container-md-6">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeDF.gsp">Nuova vendita</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeDF.gsp">Nuova vendita</a>
                             </div>
                         </div>
                     </div>

@@ -56,28 +56,22 @@
                         <h1>Operazioni disponibili per un Titolare:</h1>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="section">
-                                    <div class="container-md-6">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeDF.gsp">Registra un Dottore di Farmacia</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeDF.gsp">Registra un Dottore di Farmacia</a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="section">
-                                    <div class="container-md-6">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeOB.gsp">Registra un Operatore di Banco</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeOB.gsp">Registra un Operatore di Banco</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="btn btn-block btn-lg btn-primary" href="../productEditor/adder.gsp">Registra un Prodotto</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeOB.gsp">Ordina un Prodotto già registrato</a>
                             </div>
                         </div>
                     </div>
