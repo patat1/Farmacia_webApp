@@ -17,9 +17,9 @@ class ProductEditorController {
             flash.message= flash.message + "Errore: Riempire tutti i campi"
             redirect(action: "adder")
         }
-        if (Prodotto.executeQuery("from Prodotto where codice = ? and utenteTF_FK = ?", [params.codice, session.user])){
+        if (Prodotto.executeQuery("from Prodotto where codice = ? AND utenteTF_FK = ?", [params.codice, session.user])){
             flash.message= flash.message + "Errore: il prodotto inserito esiste già"
-            redirect(action: "subscribeTF")
+            redirect(action: "adder")
         }
         if (flash.message==""){
             session.newuser= params.nomef//usato per la conferma
@@ -28,7 +28,7 @@ class ProductEditorController {
                     codice: params.codice,
                     prezzo: params.prezzo,
                     dispon: 0,
-                    tipo: true,
+                    tipo: params.ricetta,
                     utenteTF_FK: session.user).save()
             flash.message="Prodotto aggiunto: " + params.nome
             redirect(action: "adder")

@@ -4944,7 +4944,7 @@ a.thumbnail.active {
 .alert-success {
   background-color: #a3d7a3;
   border-color: #9ccf91;
-  color: #5cb85c;
+  color: #458a45;
 }
 .alert-success hr {
   border-top-color: #8cc780;
@@ -4953,9 +4953,9 @@ a.thumbnail.active {
   color: #449d44;
 }
 .alert-info {
-  background-color: #b0e1ef;
-  border-color: #92e4e9;
-  color: #5bc0de;
+  background-color: #5debf6;
+  border-color: #4b8ef6;
+  color: #366599;
 }
 .alert-info hr {
   border-top-color: #7ddee5;

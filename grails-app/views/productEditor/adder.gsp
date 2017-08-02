@@ -78,6 +78,17 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <div class="col-sm-2">
+                            <label for="recipe" class="control-label">Ricetta</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <select class="btn btn-primary dropdown-toggle" name="ricetta" id="recipe">
+                                <OPTION VALUE=false SELECTED>Non richiede la ricetta
+                                <OPTION VALUE=true>Richiede la ricetta
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-default">Procedi con l'aggiunta
                                 <i class="fa fa-fw fa-angle-right"></i>
