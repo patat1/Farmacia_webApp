@@ -1,4 +1,8 @@
-package farmacia_webapp
+package farmacia_webapp.login_subscribe
+
+import farmacia_webapp.UtenteDF
+import farmacia_webapp.UtenteOB
+import farmacia_webapp.UtenteTF
 
 
 class LoginController {

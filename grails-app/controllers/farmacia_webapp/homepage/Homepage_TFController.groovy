@@ -1,4 +1,4 @@
-package farmacia_webapp
+package farmacia_webapp.homepage
 
 class Homepage_TFController {
 

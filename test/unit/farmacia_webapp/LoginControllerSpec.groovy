@@ -1,5 +1,6 @@
 package farmacia_webapp
 
+import farmacia_webapp.login_subscribe.LoginController
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
