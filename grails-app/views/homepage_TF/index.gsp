@@ -71,7 +71,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeOB.gsp">Ordina un Prodotto già registrato</a>
+                                <a class="btn btn-block btn-lg btn-primary" href="../productEditor/listProducts.gsp">Ordina un Prodotto già registrato</a>
                             </div>
                         </div>
                     </div>

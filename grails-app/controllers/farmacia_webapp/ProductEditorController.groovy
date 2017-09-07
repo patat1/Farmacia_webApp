@@ -11,6 +11,16 @@ class ProductEditorController {
         }
     }
 
+    def listProducts() {
+        if (session.usertype != "TF"){
+            flash.message="Errore: login come Titolare non effettuato"
+            session.user=null
+            session.usertype=null
+            redirect (action: "login", controller: "login")
+        }
+
+    }
+
     def addPROD = {
         flash.message=""
         if (params.nome=="" || params.codice=="" || params.prezzo==""){
@@ -33,5 +43,14 @@ class ProductEditorController {
             flash.message="Prodotto aggiunto: " + params.nome
             redirect(action: "adder")
         }
+    }
+
+    def listProd() {
+        /*String output=""
+        def listaProdotti = Prodotto.executeQuery("from Prodotto where utenteTF_FK = ?", [session.user])
+        for (def prodotto : listaProdotti){
+            output+=prodotto.toString()
+        }*/
+        render("some text")
     }
 }
