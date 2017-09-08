@@ -1,24 +1,24 @@
-package farmacia_webapp
+package farmacia_webapp.prodotti
+
+import farmacia_webapp.Prodotto
 
 class ProductEditorController {
 
     def adder() {
-        if (session.usertype != "TF"){
-            flash.message="Errore: login come Titolare non effettuato"
-            session.user=null
-            session.usertype=null
-            redirect (action: "login", controller: "login")
-        }
+        check()
     }
 
     def listProducts() {
+        check()
+    }
+
+    def check(){
         if (session.usertype != "TF"){
             flash.message="Errore: login come Titolare non effettuato"
             session.user=null
             session.usertype=null
             redirect (action: "login", controller: "login")
         }
-
     }
 
     def addPROD = {
@@ -45,12 +45,12 @@ class ProductEditorController {
         }
     }
 
-    def listProd() {
-        /*String output=""
-        def listaProdotti = Prodotto.executeQuery("from Prodotto where utenteTF_FK = ?", [session.user])
-        for (def prodotto : listaProdotti){
-            output+=prodotto.toString()
-        }*/
-        render("some text")
+    def orderPROD = {
+        //def prodotto = Prodotto.executeQuery("from Prodotto where codice = ? AND utenteTF_FK = ?", [params.codice, session.user]).get(0)
+        int qt = Integer.parseInt(params.quantity)
+        Prodotto.executeUpdate("update Prodotto set dispon = dispon + ? where codice = ? AND utenteTF_FK = ?", [qt, params.barcode, session.user])
+        flash.message="Prodotto aggiornato: " +
+                Prodotto.executeQuery("from Prodotto where codice = ? AND utenteTF_FK = ?", [params.barcode, session.user]).get(0).getNome()
+        redirect(action: "listProducts")
     }
 }

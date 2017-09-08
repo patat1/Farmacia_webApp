@@ -38,7 +38,7 @@
                 <h3>Registrazione di un nuovo Prodotto</h3>
                 <h4>Inserire i dati</h4>
                 <g:if test="${flash.message}">
-                    <div class="alert alert-dismissable alert-warning">${flash.message}</div>
+                    <div class="alert alert-dismissable alert-success">${flash.message}</div>
                 </g:if>
             </div>
         </div>

@@ -5,7 +5,7 @@
   Time: 11.16
 --%>
 
-<%@ page import="farmacia_webapp.ProductEditorController" contentType="text/html;charset=UTF-8" %>
+<%@ page import="farmacia_webapp.prodotti.ProductEditorController" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <link rel="icon" href="../images/icon.png">
@@ -36,6 +36,9 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Elenco dei prodotti</h1>
+                <g:if test="${flash.message}">
+                    <div class="alert alert-dismissable alert-info">${flash.message}</div>
+                </g:if>
             </div>
         </div>
     </div>
@@ -49,9 +52,9 @@
                 <th>Codice</th>
                 <th>Costo</th>
                 <th>Quantità disponibile</th>
-                <th>Ordine</th>
+                <th>Ordina</th>
             </tr>
-            <g:prodtable></g:prodtable>
+            <g:prodtable/>
             </thead>
 
         </table>
