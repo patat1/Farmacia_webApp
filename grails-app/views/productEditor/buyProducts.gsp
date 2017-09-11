@@ -31,6 +31,7 @@
         </div>
     </div>
 </div>
+<g:menuMain/>
 <div class="section">
     <div class="container">
         <div class="row">
