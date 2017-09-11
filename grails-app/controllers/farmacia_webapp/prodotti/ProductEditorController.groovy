@@ -12,6 +12,8 @@ class ProductEditorController {
         check()
     }
 
+    def buyProducts() {}
+
     def check(){
         if (session.usertype != "TF"){
             flash.message="Errore: login come Titolare non effettuato"
@@ -46,11 +48,24 @@ class ProductEditorController {
     }
 
     def orderPROD = {
-        //def prodotto = Prodotto.executeQuery("from Prodotto where codice = ? AND utenteTF_FK = ?", [params.codice, session.user]).get(0)
         int qt = Integer.parseInt(params.quantity)
         Prodotto.executeUpdate("update Prodotto set dispon = dispon + ? where codice = ? AND utenteTF_FK = ?", [qt, params.barcode, session.user])
         flash.message="Prodotto aggiornato: " +
                 Prodotto.executeQuery("from Prodotto where codice = ? AND utenteTF_FK = ?", [params.barcode, session.user]).get(0).getNome()
         redirect(action: "listProducts")
+    }
+
+    def buyPROD = {
+        if (session.cart==null){
+            def cart = new ArrayList()
+            session.cart=cart
+        }
+        def elem = new String[2]
+        elem[0]=params.quantity
+        elem[1]=params.barcode
+        session.cart.add(elem)
+        flash.message="Prodotto aggiunto: " +
+                Prodotto.executeQuery("from Prodotto where codice = ? AND utenteTF_FK = ?", [params.barcode, session.farmacia]).get(0).getNome()
+        redirect(action: "buyProducts")
     }
 }

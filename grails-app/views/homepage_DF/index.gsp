@@ -56,7 +56,7 @@
                         <h1>Operazioni disponibili per un Dottore di Farmacia:</h1>
                         <div class="row">
                             <div class="col-md-12">
-                                    <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeDF.gsp">Nuovo Acquisto</a>
+                                    <a class="btn btn-block btn-lg btn-primary" href="../productEditor/buyProducts.gsp">Nuovo Acquisto</a>
                                 </div>
                             </div>
                         </div>

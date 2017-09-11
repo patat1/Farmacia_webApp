@@ -21,16 +21,21 @@ class LoginController {
         else if(UtenteTF.executeQuery("from UtenteTF where email=? AND password=?", [params.username, params.password])) {
             session.userinfo=session.user=params.username
             session.usertype="TF"
+            session.farmacia=params.username
             redirect(controller: 'homepage_TF', action:'index')
         }
         else if(UtenteDF.executeQuery("from UtenteDF where email=? AND password=?", [params.username, params.password])) {
+            def pers = UtenteDF.executeQuery("from UtenteDF where email=? AND password=?", [params.username, params.password])
             session.userinfo=session.user=params.username
             session.usertype="DF"
+            session.farmacia=pers.get(0).utenteTF_FK
             redirect(controller: 'homepage_DF', action:'index')
         }
         else if(UtenteOB.executeQuery("from UtenteOB where email=? AND password=?", [params.username, params.password])) {
+            def pers = UtenteOB.executeQuery("from UtenteOB where email=? AND password=?", [params.username, params.password])
             session.userinfo=session.user=params.username
             session.usertype="OB"
+            session.farmacia=pers.get(0).utenteTF_FK
             redirect(controller: 'homepage_OB', action:'index')
         }
         else{

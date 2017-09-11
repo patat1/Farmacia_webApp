@@ -78,7 +78,41 @@
 							</div>
 						</div>
 					</g:if>
+					<g:if test="${session.usertype=="OB"}">
+					<h4>Effettuato accesso come Operatore di Banco</h4>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section">
+								<div class="container-md-6">
+									<div class="row">
+										<div class="col-md-12">
+											<a class="btn btn-block btn-lg btn-primary" href="homepage_OB/index.gsp">Vai alla Home del'Operatore di Banco</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</g:if>
+					<g:if test="${session.usertype=="DF"}">
+						<h4>Effettuato accesso come Dottore di Farmacia</h4>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="section">
+									<div class="container-md-6">
+										<div class="row">
+											<div class="col-md-12">
+												<a class="btn btn-block btn-lg btn-primary" href="homepage_DF/index.gsp">Vai alla Home del Dottore di Famracia</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</g:if>
 				</div>
+		</div>
+		</div>
 		</div>
 	</div>
 </div>
