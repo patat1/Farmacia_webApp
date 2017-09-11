@@ -39,8 +39,28 @@ class ProductsTagLib {
                         "<td>"+ prodotto.getDispon() + "</td>" +
                         "<td>" +
                         "<form action=\"buyPROD\" controller=\"ProductEditorController.groovy\">\n" +
-                        "  <input type=\"number\" min=\"0\" value=\"0\" class=\"form-control\" name=\"quantity\"/>\n" +
+                        "  <input type=\"number\" min=\"1\" max=\""+ prodotto.getDispon() +"\" value=\"0\" class=\"form-control\" name=\"quantity\"/>\n" +
                         "  <input type=\"hidden\" name=\"barcode\" value=\""+ prodotto.getCodice() +"\"/>\n" +
+                        "  <input type=\"hidden\" name=\"price\" value=\""+ prodotto.getPrezzo() +"\"/>\n" +
+                        "  <input class=\"btn btn-primary\" type=\"submit\" value=\"Ordina\">\n" +
+                        "</form>" +
+                        "</td></tr>"
+            }
+    }
+
+    def cartProdTable = {
+        def listaProdotti
+        if (session.cart!=null)
+            for (def prodotto : session.cart){
+                def p = listaProdotti = Prodotto.executeQuery("from Prodotto where codice = ? and utenteTF_FK = ?", [prodotto[1], session.farmacia]).get(0)
+                out << "<tr><td>"+ p.getNome() + "</td>" +
+                        "<td>"+ prodotto[1] + "</td>" +
+                        "<td>"+ prodotto[2] + "€</td>" +
+                        "<td>"+ prodotto[0] + "</td>" +
+                        "<td>" +
+                        "<form action=\"orderPROD\" controller=\"ProductEditorController.groovy\">\n" +
+                        "  <input type=\"number\" min=\"0\" value=\"0\" class=\"form-control\" name=\"quantity\"/>\n" +
+                        "  <input type=\"hidden\" name=\"barcode\" value=\""+ prodotto[1] +"\"/>\n" +
                         "  <input class=\"btn btn-primary\" type=\"submit\" value=\"Ordina\">\n" +
                         "</form>" +
                         "</td></tr>"

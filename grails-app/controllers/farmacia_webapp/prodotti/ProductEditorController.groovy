@@ -60,9 +60,10 @@ class ProductEditorController {
             def cart = new ArrayList()
             session.cart=cart
         }
-        def elem = new String[2]
+        def elem = new String[3]
         elem[0]=params.quantity
         elem[1]=params.barcode
+        elem[2]=params.price
         session.cart.add(elem)
         flash.message="Prodotto aggiunto: " +
                 Prodotto.executeQuery("from Prodotto where codice = ? AND utenteTF_FK = ?", [params.barcode, session.farmacia]).get(0).getNome()
