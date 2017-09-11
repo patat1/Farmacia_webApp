@@ -1,5 +1,6 @@
 package farmacia_webapp.login_subscribe
 
+import farmacia_webapp.Regione
 import farmacia_webapp.UtenteDF
 import farmacia_webapp.UtenteOB
 import farmacia_webapp.UtenteTF
@@ -12,8 +13,8 @@ class LoginController {
 
     def log_in = {
         Object info
-        if (params.username== "PIEMONTE" && params.password== "regionepiemonte"){
-            session.user="regione"
+        if(Regione.executeQuery("from Regione where nome=? AND password=?", [params.username, params.password])) {
+            session.user=params.username
             session.usertype="REG"
             redirect(controller: 'homepage_regione', action:'index')
         }

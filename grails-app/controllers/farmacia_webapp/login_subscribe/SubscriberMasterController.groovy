@@ -4,6 +4,7 @@ import farmacia_webapp.Farmacia
 import farmacia_webapp.UtenteDF
 import farmacia_webapp.UtenteOB
 import farmacia_webapp.UtenteTF
+import farmacia_webapp.Regione
 
 class SubscriberMasterController {
 
@@ -31,6 +32,9 @@ class SubscriberMasterController {
             redirect (action: "login", controller: "login")
         }
     }
+
+    def subscribeREG() {}
+
     def confirmation() {}
 
     def subTF = {
@@ -61,7 +65,8 @@ class SubscriberMasterController {
                     via: params.via,
                     numtel: params.numero,
                     nomeTit: params.nome +" "+ params.cognome,
-                    utenteTF_FK: params.email).save()
+                    utenteTF_FK: params.email,
+                    regione_FK: session.user).save()
             redirect(action: "confirmation")
         }
 
@@ -94,6 +99,7 @@ class SubscriberMasterController {
             redirect(action: "confirmation")
         }
     }
+
     def subOB = {
         flash.message=""
         if (params.nome=="" || params.cognome==""
@@ -118,6 +124,30 @@ class SubscriberMasterController {
                     cognome: params.cognome,
                     email: params.email,
                     utenteTF_FK: session.user).save()
+            redirect(action: "confirmation")
+        }
+    }
+
+    def subREG = {
+        flash.message=""
+        if (params.nome=="" ||params.passworda=="" || params.passwordb==""){
+            flash.message= flash.message + "Errore: Riempire tutti i campi"
+            redirect(action: "subscribeREG")
+        }
+        if (params.passworda!=params.passwordb){
+            flash.message= flash.message + "Errore: le password non coincidono"
+            redirect(action: "subscribeREG")
+        }
+        if (Regione.executeQuery("from Regione where nome = ?", [params.nome])){
+            flash.message= flash.message + "Errore: l'email inserita risulta già associata ad un account"
+            redirect(action: "subscribeREG")
+        }
+
+        if (flash.message==""){
+            session.newuser= params.nome//usato per la conferma
+            new Regione(
+                    nome: params.nome,
+                    password: params.passworda).save()
             redirect(action: "confirmation")
         }
     }

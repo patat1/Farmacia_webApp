@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#">Accesso come REGIONE PIEMONTE</a>
+                        <a href="#">Accesso come regione ${session.user}</a>
                     </li>
                     <li class="active">
                         <a controller="login" href="../login/logout.gsp">Logout</a>

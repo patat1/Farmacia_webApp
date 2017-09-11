@@ -6,6 +6,7 @@ class Farmacia {
     String numtel
     String nomeTit
     String utenteTF_FK
+    String regione_FK
 
     static constraints = {
 

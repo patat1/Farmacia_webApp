@@ -25,9 +25,13 @@
 			<g:if test="${!session.user}">
 				<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 					<ul class="nav navbar-nav navbar-right">
+					<li class="">
+						<a href="subscriberMaster/subscribeREG.gsp">Registra una nuova Regione</a>
+					</li>
 						<li class="active">
 							<a href="login/login.gsp">Accesso</a>
 						</li>
+
 					</ul>
 				</div>
 			</g:if>
@@ -74,25 +78,6 @@
 							</div>
 						</div>
 					</g:if>
-					<g:else>
-						<p>La Regione (REG) ha osservato che negli ultimi tempi ciascuna farmacia
-						si e’ dotata di un proprio sistema di contabilita’/gestione di magazzino,
-						e molti di tali sistemi sono ormai divenuti obsoleti. Inoltre la frammentazione
-						delle soluzioni rende difficoltosa l’integrazione dei dati per fini analitici.
-						REG ha dunque deciso di realizzare una applicazione accessibile via Web,
-						che dovra’ essere utilizzata da tutte le farmacie al duplice scopo di abbattere
-						i costi di produzione/manutenzione del sistema, e di standardizzare ed
-						agevolare la condivisione delle informazioni con REG stessa.La Regione
-						(REG) ha osservato che negli ultimi tempi ciascuna farmacia si e’ dotata
-						di un proprio sistema di contabilita’/gestione di magazzino, e molti di
-						tali sistemi sono ormai divenuti obsoleti. Inoltre la frammentazione delle
-						soluzioni rende difficoltosa l’integrazione dei dati per fini analitici.
-						REG ha dunque deciso di realizzare una applicazione accessibile via Web,
-						che dovra’ essere utilizzata da tutte le farmacie al duplice scopo di abbattere
-						i costi di produzione/manutenzione del sistema, e di standardizzare ed
-						agevolare la condivisione delle informazioni con REG stessa.</p>
-					</g:else>
-
 				</div>
 		</div>
 	</div>

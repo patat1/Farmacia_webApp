@@ -4889,3 +4889,4 @@ n:445:org/codehaus/groovy/runtime/MethodRankHelper$NullObject
 n:1768:org/codehaus/groovy/runtime/MethodRankHelper$RankableMethod
 n:3545:org/codehaus/groovy/grails/plugins/web/GroovyPagesGrailsPlugin$_closure5$_closure26
 n:2324:org/codehaus/groovy/grails/plugins/web/GroovyPagesGrailsPlugin$_closure5$_closure26$_closure27
+n:820:org/fusesource/jansi/AnsiConsole$1
