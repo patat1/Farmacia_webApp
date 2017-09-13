@@ -57,11 +57,19 @@ class ProductEditorController {
     }
 
     def buyPROD = {
+        def e, delete
         if (session.cart==null){
             def cart = new ArrayList<cartElement>()
             session.cart=cart
         }
-        def e = new cartElement(params.barcode, Integer.parseInt(params.quantity), Float.parseFloat(params.price))
+        for (def prod : session.cart)
+            if (prod.getBarcode().equals(params.barcode)){
+                e = new cartElement(params.barcode, Integer.parseInt(params.quantity) + prod.getQuantity(), Float.parseFloat(params.price))
+                delete=prod
+            }
+        if (e==null)
+            e = new cartElement(params.barcode, Integer.parseInt(params.quantity), Float.parseFloat(params.price))
+        session.cart.remove(delete)
         session.cart.add(e)
         int qt = Integer.parseInt(params.quantity)
         Prodotto.executeUpdate("update Prodotto set dispon = dispon - ? where codice = ? AND utenteTF_FK = ?", [Integer.parseInt(params.quantity), params.barcode, session.farmacia])
