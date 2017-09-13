@@ -1,7 +1,7 @@
 package farmacia_webapp.carrello
 
 import farmacia_webapp.Prodotto
-import farmacia_webapp.prodotti.ProductEditorController
+import farmacia_webapp.utility.cartElement
 
 class CarrelloController {
 
@@ -15,21 +15,22 @@ class CarrelloController {
         if (session.cart!=null){
             for (def prodotto : session.cart){
                 deleteFromCart(prodotto.getBarcode(), prodotto.getQuantity())
-                session.cart.remove(prodotto)
             }
-            session.cart=null
+            session.cart.clear()
             flash.message="Carrello svuotato"
         }
         redirect(action: "index")
     }
 
     def deletePROD = {
-        for (def prodotto : session.cart){
-            if (prodotto.getBarcode()==params.barcode){
-                deleteFromCart(params.barcode, prodotto.getQuantity())
-                session.cart.remove(prodotto)
+        def deleteMe
+        for (def product : session.cart){
+            if (product.getBarcode()==params.barcode){
+                deleteFromCart(params.barcode, product.getQuantity())
+                deleteMe=product
             }
         }
+        session.cart.remove(deleteMe)
         flash.message="Prodotto eliminato"
         redirect(action: "index")
     }

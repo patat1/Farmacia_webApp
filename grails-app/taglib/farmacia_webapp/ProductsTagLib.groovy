@@ -1,5 +1,7 @@
 package farmacia_webapp
 
+import farmacia_webapp.utility.cartElement
+
 class ProductsTagLib {
     static defaultEncodeAs = "raw"
     def prodtable = {
