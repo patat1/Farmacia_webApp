@@ -52,16 +52,15 @@ class ProductsTagLib {
         def listaProdotti
         if (session.cart!=null)
             for (def prodotto : session.cart){
-                def p = listaProdotti = Prodotto.executeQuery("from Prodotto where codice = ? and utenteTF_FK = ?", [prodotto[1], session.farmacia]).get(0)
+                def p = listaProdotti = Prodotto.executeQuery("from Prodotto where codice = ? and utenteTF_FK = ?", [prodotto.getBarcode(), session.farmacia]).get(0)
                 out << "<tr><td>"+ p.getNome() + "</td>" +
-                        "<td>"+ prodotto[1] + "</td>" +
-                        "<td>"+ prodotto[2] + "€</td>" +
-                        "<td>"+ prodotto[0] + "</td>" +
+                        "<td>"+ p.getCodice() + "</td>" +
+                        "<td>"+ prodotto.getPrice() + "€</td>" +
+                        "<td>"+ prodotto.getQuantity() + "</td>" +
                         "<td>" +
-                        "<form action=\"orderPROD\" controller=\"ProductEditorController.groovy\">\n" +
-                        "  <input type=\"number\" min=\"0\" value=\"0\" class=\"form-control\" name=\"quantity\"/>\n" +
-                        "  <input type=\"hidden\" name=\"barcode\" value=\""+ prodotto[1] +"\"/>\n" +
-                        "  <input class=\"btn btn-primary\" type=\"submit\" value=\"Ordina\">\n" +
+                        "<form action=\"deletePROD\" controller=\"CarrelloController.groovy\">\n" +
+                        "  <input type=\"hidden\" name=\"barcode\" value=\""+ p.getCodice() +"\"/>\n" +
+                        "  <input class=\"btn btn-primary\" type=\"submit\" value=\"Rimuovi Prodotto\">\n" +
                         "</form>" +
                         "</td></tr>"
             }

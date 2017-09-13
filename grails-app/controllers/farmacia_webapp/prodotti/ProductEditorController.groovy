@@ -49,7 +49,7 @@ class ProductEditorController {
 
     def orderPROD = {
         int qt = Integer.parseInt(params.quantity)
-        Prodotto.executeUpdate("update Prodotto set dispon = dispon + ? where codice = ? AND utenteTF_FK = ?", [qt, params.barcode, session.user])
+        Prodotto.executeUpdate("update Prodotto set dispon = dispon + ? where codice = ? AND utenteTF_FK = ?", [qt, params.barcode, session.farmacia])
         flash.message="Prodotto aggiornato: " +
                 Prodotto.executeQuery("from Prodotto where codice = ? AND utenteTF_FK = ?", [params.barcode, session.user]).get(0).getNome()
         redirect(action: "listProducts")
@@ -57,16 +57,51 @@ class ProductEditorController {
 
     def buyPROD = {
         if (session.cart==null){
-            def cart = new ArrayList()
+            def cart = new ArrayList<cartElement>()
             session.cart=cart
         }
-        def elem = new String[3]
-        elem[0]=params.quantity
-        elem[1]=params.barcode
-        elem[2]=params.price
-        session.cart.add(elem)
+        def e = new cartElement(params.barcode, Integer.parseInt(params.quantity), Float.parseFloat(params.price))
+        session.cart.add(e)
+        int qt = Integer.parseInt(params.quantity)
+        Prodotto.executeUpdate("update Prodotto set dispon = dispon - ? where codice = ? AND utenteTF_FK = ?", [Integer.parseInt(params.quantity), params.barcode, session.farmacia])
         flash.message="Prodotto aggiunto: " +
                 Prodotto.executeQuery("from Prodotto where codice = ? AND utenteTF_FK = ?", [params.barcode, session.farmacia]).get(0).getNome()
         redirect(action: "buyProducts")
+    }
+
+    class cartElement{
+        int quantity
+        float price
+        String barcode
+
+        String getBarcode() {
+            return barcode
+        }
+
+        void setBarcode(String barcode) {
+            this.barcode = barcode
+        }
+
+        cartElement(String barcode, int quantity, float price){
+            this.barcode=barcode
+            this.quantity=quantity
+            this.price=price
+        }
+
+        int getQuantity() {
+            return quantity
+        }
+
+        void setQuantity(int quantity) {
+            this.quantity = quantity
+        }
+
+        float getPrice() {
+            return price
+        }
+
+        void setPrice(float price) {
+            this.price = price
+        }
     }
 }
