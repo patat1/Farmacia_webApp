@@ -50,7 +50,6 @@
         <div class="row">
             <div class="col-md-12">
                 <form class="form-horizontal" role="form" action="addPROD" controller="SubscriberMasterController.groovy">
-
                     <div class="form-group">
                         <div class="col-sm-2">
                             <label for="name" class="control-label">Nome</label>

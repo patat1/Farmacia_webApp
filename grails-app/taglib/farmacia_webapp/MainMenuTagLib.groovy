@@ -6,16 +6,16 @@ class MainMenuTagLib {
         def homeURL
         switch (session.usertype){
             case "TF":
-                homeURL = "../homepage_TF/index.gsp"
+                homeURL = "../homepage/home_TF.gsp"
                 break
             case "DF":
-                homeURL = "../homepage_DF/index.gsp"
+                homeURL = "../homepage/home_DF.gsp"
                 break
             case "OB":
-                homeURL = "../homepage_OB/index.gsp"
+                homeURL = "../homepage/home_OB.gsp"
                 break
             case "REG":
-                homeURL = "../homepage_regione/index.gsp"
+                homeURL = "../homepage/home_REG.gsp"
                 break
             default:
                 homeURL = "#"

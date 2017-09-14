@@ -25,13 +25,9 @@
 			<g:if test="${!session.user}">
 				<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 					<ul class="nav navbar-nav navbar-right">
-					<li class="">
-						<a href="subscriberMaster/subscribeREG.gsp">Registra una nuova Regione</a>
-					</li>
 						<li class="active">
 							<a href="login/login.gsp">Accesso</a>
 						</li>
-
 					</ul>
 				</div>
 			</g:if>
@@ -54,7 +50,7 @@
 									<div class="container-md-6">
 										<div class="row">
 											<div class="col-md-12">
-												<a class="btn btn-block btn-lg btn-primary" href="homepage_regione/index.gsp">Vai alla Home della Regione</a>
+												<a class="btn btn-block btn-lg btn-primary" href="homepage/home_REG.gsp">Vai alla Home della Regione</a>
 											</div>
 										</div>
 									</div>
@@ -70,7 +66,7 @@
 									<div class="container-md-6">
 										<div class="row">
 											<div class="col-md-12">
-												<a class="btn btn-block btn-lg btn-primary" href="homepage_TF/index.gsp">Vai alla Home del Titolare</a>
+												<a class="btn btn-block btn-lg btn-primary" href="homepage/home_TF.gsp">Vai alla Home del Titolare</a>
 											</div>
 										</div>
 									</div>
@@ -86,14 +82,14 @@
 								<div class="container-md-6">
 									<div class="row">
 										<div class="col-md-12">
-											<a class="btn btn-block btn-lg btn-primary" href="homepage_OB/index.gsp">Vai alla Home del'Operatore di Banco</a>
+											<a class="btn btn-block btn-lg btn-primary" href="homepage/home_OB.gsp">Vai alla Home del'Operatore di Banco</a>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</g:if>
+					</g:if>
 					<g:if test="${session.usertype=="DF"}">
 						<h4>Effettuato accesso come Dottore di Farmacia</h4>
 						<div class="row">
@@ -102,7 +98,7 @@
 									<div class="container-md-6">
 										<div class="row">
 											<div class="col-md-12">
-												<a class="btn btn-block btn-lg btn-primary" href="homepage_DF/index.gsp">Vai alla Home del Dottore di Famracia</a>
+												<a class="btn btn-block btn-lg btn-primary" href="homepage/home_DF.gsp">Vai alla Home del Dottore di Famracia</a>
 											</div>
 										</div>
 									</div>

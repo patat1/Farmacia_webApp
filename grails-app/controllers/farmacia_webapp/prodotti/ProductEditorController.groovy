@@ -1,23 +1,24 @@
 package farmacia_webapp.prodotti
 
+import farmacia_webapp.Confezione
 import farmacia_webapp.Prodotto
 import farmacia_webapp.utility.cartElement
 
 class ProductEditorController {
 
     def adder() {
-        check()
+        check("REG")
     }
 
     def listProducts() {
-        check()
+        check("TF")
     }
 
     def buyProducts() {}
 
-    def check(){
-        if (session.usertype != "TF"){
-            flash.message="Errore: login come Titolare non effettuato"
+    def check(String type){
+        if (session.usertype != type){
+            flash.message="Errore: login non effettuato correttamente"
             session.user=null
             session.usertype=null
             redirect (action: "login", controller: "login")
@@ -27,22 +28,19 @@ class ProductEditorController {
     def addPROD = {
         flash.message=""
         if (params.nome=="" || params.codice=="" || params.prezzo==""){
-            flash.message= flash.message + "Errore: Riempire tutti i campi"
+            flash.message= "Errore: Riempire tutti i campi"
             redirect(action: "adder")
         }
-        if (Prodotto.executeQuery("from Prodotto where codice = ? AND utenteTF_FK = ?", [params.codice, session.user])){
-            flash.message= flash.message + "Errore: il prodotto inserito esiste già"
+        else if (Prodotto.executeQuery("from Prodotto where barcode = ?", [params.codice])){
+            flash.message= "Errore: il prodotto inserito è già presente nel database"
             redirect(action: "adder")
         }
-        if (flash.message==""){
-            session.newuser= params.nomef//usato per la conferma
+        else{
             new Prodotto(
                     nome: params.nome,
-                    codice: params.codice,
+                    barcode: params.codice,
                     prezzo: params.prezzo,
-                    dispon: 0,
-                    tipo: params.ricetta,
-                    utenteTF_FK: session.user).save()
+                    ricetta: params.ricetta,).save()
             flash.message="Prodotto aggiunto: " + params.nome
             redirect(action: "adder")
         }
@@ -50,9 +48,16 @@ class ProductEditorController {
 
     def orderPROD = {
         int qt = Integer.parseInt(params.quantity)
-        Prodotto.executeUpdate("update Prodotto set dispon = dispon + ? where codice = ? AND utenteTF_FK = ?", [qt, params.barcode, session.farmacia])
-        flash.message="Prodotto aggiornato: " +
-                Prodotto.executeQuery("from Prodotto where codice = ? AND utenteTF_FK = ?", [params.barcode, session.user]).get(0).getNome()
+        if (Confezione.executeQuery("from Confezione where idProdotto = ? and idFarmacia = ?", [Integer.parseInt(params.prodotto), session.farmacia]).size!=0)
+            Confezione.executeUpdate("update Confezione set quantità = quantità + ? where idProdotto = ? AND idFarmacia = ?", [qt, Integer.parseInt(params.prodotto), session.farmacia])
+        else {
+            new Confezione(
+                    idProdotto: Integer.parseInt(params.prodotto),
+                    idFarmacia: session.farmacia,
+                    quantità: qt
+            ).save()
+        }
+        flash.message="Prodotto ordinato"
         redirect(action: "listProducts")
     }
 

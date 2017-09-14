@@ -1,10 +1,7 @@
 package farmacia_webapp.login_subscribe
 
 import farmacia_webapp.Farmacia
-import farmacia_webapp.UtenteDF
-import farmacia_webapp.UtenteOB
-import farmacia_webapp.UtenteTF
-import farmacia_webapp.Regione
+import farmacia_webapp.Utente
 
 class SubscriberMasterController {
 
@@ -33,13 +30,11 @@ class SubscriberMasterController {
         }
     }
 
-    def subscribeREG() {}
-
     def confirmation() {}
 
     def subTF = {
         flash.message=""
-        if (params.nome=="" || params.cognome=="" || params.passworda=="" || params.passwordb=="" || params.email==""
+        if (params.nome=="" || params.cognome=="" || params.passworda=="" || params.passwordb==""
         || params.nomef=="" || params.numero=="" || params.via==""){
             flash.message= flash.message + "Errore: Riempire tutti i campi"
             redirect(action: "subscribeTF")
@@ -48,25 +43,25 @@ class SubscriberMasterController {
             flash.message= flash.message + "Errore: le password non coincidono"
             redirect(action: "subscribeTF")
         }
-        if (UtenteTF.executeQuery("from UtenteTF where email = ?", [params.email])){
-            flash.message= flash.message + "Errore: l'email inserita risulta già associata ad un account"
+        if (Utente.executeQuery("from Utente where nome = ? and cognome=?", [params.nome, params.cognome])){
+            flash.message= flash.message + "Errore: l'utente risulta già iscritto"
             redirect(action: "subscribeTF")
         }
 
         if (flash.message==""){
-            session.newuser= params.nomef//usato per la conferma
-            new UtenteTF(
-                    nome: params.nome,
-                    password: params.passworda,
-                    cognome: params.cognome,
-                    email: params.email).save()
+            session.newuser= params.nome+" "+params.cognome + ", Titolare di " + params.nomef + ", (Nome Utente: " + params.nome+params.cognome+ "@TF)"//usato per la conferma
             new Farmacia(
                     nome: params.nomef,
                     via: params.via,
-                    numtel: params.numero,
-                    nomeTit: params.nome +" "+ params.cognome,
-                    utenteTF_FK: params.email,
-                    regione_FK: session.user).save()
+                    numtel: params.numero).save()
+            int farmacia_numero = Farmacia.executeQuery("from Farmacia where nome = ?", [params.nomef]).get(0).getId()
+            new Utente(
+                    nome: params.nome,
+                    password: params.passworda,
+                    cognome: params.cognome,
+                    username: params.nome+params.cognome+"@TF",
+                    tipo: "TF",
+                    idFarmacia: farmacia_numero).save()
             redirect(action: "confirmation")
         }
 
@@ -75,7 +70,7 @@ class SubscriberMasterController {
     def subDF = {
         flash.message=""
         if (params.nome=="" || params.cognome==""
-            ||params.passworda=="" || params.passwordb=="" || params.email==""){
+            ||params.passworda=="" || params.passwordb==""){
             flash.message= flash.message + "Errore: Riempire tutti i campi"
             redirect(action: "subscribeDF")
         }
@@ -83,19 +78,20 @@ class SubscriberMasterController {
             flash.message= flash.message + "Errore: le password non coincidono"
             redirect(action: "subscribeDF")
         }
-        if (UtenteDF.executeQuery("from UtenteDF where email = ?", [params.email])){
-            flash.message= flash.message + "Errore: l'email inserita risulta già associata ad un account"
+        if (Utente.executeQuery("from Utente where nome = ? and cognome=?", [params.nome, params.cognome])){
+            flash.message= flash.message + "Errore: l'utente risulta già iscritto"
             redirect(action: "subscribeDF")
         }
 
         if (flash.message==""){
-            session.newuser= params.nome+" "+params.cognome//usato per la conferma
-            new UtenteDF(
+            session.newuser= params.nome+" "+params.cognome + ", (Nome Utente: " + params.nome+params.cognome+ "@DF)"//usato per la conferma
+            new Utente(
                     nome: params.nome,
                     password: params.passworda,
                     cognome: params.cognome,
-                    email: params.email,
-                    utenteTF_FK: session.user).save()
+                    username: params.nome+params.cognome+"@DF",
+                    tipo: "DF",
+                    idFarmacia: session.farmacia).save()
             redirect(action: "confirmation")
         }
     }
@@ -111,45 +107,21 @@ class SubscriberMasterController {
             flash.message= flash.message + "Errore: le password non coincidono"
             redirect(action: "subscribeOB")
         }
-        if (UtenteDF.executeQuery("from UtenteOB where email = ?", [params.email])){
-            flash.message= flash.message + "Errore: l'email inserita risulta già associata ad un account"
+        if (Utente.executeQuery("from Utente where nome = ? and cognome=?", [params.nome, params.cognome])){
+            flash.message= flash.message + "Errore: l'utente risulta già iscritto"
             redirect(action: "subscribeOB")
         }
 
         if (flash.message==""){
-            session.newuser= params.nome+" "+params.cognome//usato per la conferma
-            new UtenteOB(
+            session.newuser= params.nome+" "+params.cognome + ", (Nome Utente: " + params.nome+params.cognome+ "@OB)"//usato per la conferma
+            new Utente(
                     nome: params.nome,
                     password: params.passworda,
                     cognome: params.cognome,
-                    email: params.email,
-                    utenteTF_FK: session.user).save()
+                    username: params.nome+params.cognome+"@OB",
+                    tipo: "DF",
+                    idFarmacia: session.farmacia).save()
             redirect(action: "confirmation")
         }
     }
-
-    def subREG = {
-        flash.message=""
-        if (params.nome=="" ||params.passworda=="" || params.passwordb==""){
-            flash.message= flash.message + "Errore: Riempire tutti i campi"
-            redirect(action: "subscribeREG")
-        }
-        if (params.passworda!=params.passwordb){
-            flash.message= flash.message + "Errore: le password non coincidono"
-            redirect(action: "subscribeREG")
-        }
-        if (Regione.executeQuery("from Regione where nome = ?", [params.nome])){
-            flash.message= flash.message + "Errore: l'email inserita risulta già associata ad un account"
-            redirect(action: "subscribeREG")
-        }
-
-        if (flash.message==""){
-            session.newuser= params.nome//usato per la conferma
-            new Regione(
-                    nome: params.nome,
-                    password: params.passworda).save()
-            redirect(action: "confirmation")
-        }
-    }
-
 }

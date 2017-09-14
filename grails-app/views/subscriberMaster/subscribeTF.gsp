@@ -54,14 +54,6 @@
                 <form class="form-horizontal" role="form" action="subTF" controller="SubscriberMasterController.groovy">
                     <div class="form-group">
                         <div class="col-sm-2">
-                            <label for="email" class="control-label">Indirizzo email (username)</label>
-                        </div>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="email" placeholder="Indirizzo email" name="email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-2">
                             <label for="name" class="control-label">Nome</label>
                         </div>
                         <div class="col-sm-10">

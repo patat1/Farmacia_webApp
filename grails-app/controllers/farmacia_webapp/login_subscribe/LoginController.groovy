@@ -1,9 +1,6 @@
 package farmacia_webapp.login_subscribe
 
-import farmacia_webapp.Regione
-import farmacia_webapp.UtenteDF
-import farmacia_webapp.UtenteOB
-import farmacia_webapp.UtenteTF
+import farmacia_webapp.Utente
 
 
 class LoginController {
@@ -13,30 +10,27 @@ class LoginController {
 
     def log_in = {
         Object info
-        if(Regione.executeQuery("from Regione where nome=? AND password=?", [params.username, params.password])) {
-            session.user=params.username
-            session.usertype="REG"
-            redirect(controller: 'homepage_regione', action:'index')
-        }
-        else if(UtenteTF.executeQuery("from UtenteTF where email=? AND password=?", [params.username, params.password])) {
-            session.userinfo=session.user=params.username
-            session.usertype="TF"
-            session.farmacia=params.username
-            redirect(controller: 'homepage_TF', action:'index')
-        }
-        else if(UtenteDF.executeQuery("from UtenteDF where email=? AND password=?", [params.username, params.password])) {
-            def pers = UtenteDF.executeQuery("from UtenteDF where email=? AND password=?", [params.username, params.password])
-            session.userinfo=session.user=params.username
-            session.usertype="DF"
-            session.farmacia=pers.get(0).utenteTF_FK
-            redirect(controller: 'homepage_DF', action:'index')
-        }
-        else if(UtenteOB.executeQuery("from UtenteOB where email=? AND password=?", [params.username, params.password])) {
-            def pers = UtenteOB.executeQuery("from UtenteOB where email=? AND password=?", [params.username, params.password])
-            session.userinfo=session.user=params.username
-            session.usertype="OB"
-            session.farmacia=pers.get(0).utenteTF_FK
-            redirect(controller: 'homepage_OB', action:'index')
+        def result = Utente.executeQuery("from Utente where username=? AND password=?", [params.username, params.password])
+        if(result.size()!=0) {
+            session.user=result.get(0).getId()
+            session.usertype=result.get(0).getTipo()
+            session.userinfo=result.get(0).getNome()+" "+result.get(0).getCognome()
+            if (session.usertype!="REG")
+                session.farmacia=result.get(0).getIdFarmacia()
+            switch (result.get(0).tipo){
+                case "TF":
+                    redirect(controller: 'homepage', action:'home_TF')
+                    break
+                case "DF":
+                    redirect(controller: 'homepage', action:'home_DF')
+                    break
+                case "OB":
+                    redirect(controller: 'homepage', action:'home_OB')
+                    break
+                case "REG":
+                    redirect(controller: 'homepage', action:'home_REG')
+                    break
+            }
         }
         else{
             flash.message="Errore: utente o password errati. Riprovare"
