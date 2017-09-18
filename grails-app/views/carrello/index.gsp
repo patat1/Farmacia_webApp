@@ -50,7 +50,6 @@
             <thead>
             <tr>
                 <th>Prodotto</th>
-                <th>Codice</th>
                 <th>Costo</th>
                 <th>Quantità</th>
                 <th>Modifica</th>

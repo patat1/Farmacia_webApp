@@ -65,14 +65,13 @@ class ProductsTagLib {
         def listaProdotti
         if (session.cart!=null)
             for (def prodotto : session.cart){
-                def p = listaProdotti = Prodotto.executeQuery("from Prodotto where codice = ? and utenteTF_FK = ?", [prodotto.getBarcode(), session.farmacia]).get(0)
+                def p = listaProdotti = Prodotto.executeQuery("from Prodotto where id = ?", [prodotto.getId()]).get(0)
                 out << "<tr><td>"+ p.getNome() + "</td>" +
-                        "<td>"+ p.getCodice() + "</td>" +
                         "<td>"+ prodotto.getPrice() + "€</td>" +
                         "<td>"+ prodotto.getQuantity() + "</td>" +
                         "<td>" +
                         "<form action=\"deletePROD\" controller=\"CarrelloController.groovy\">\n" +
-                        "  <input type=\"hidden\" name=\"id\" value=\""+ p.getCodice() +"\"/>\n" +
+                        "  <input type=\"hidden\" name=\"id\" value=\""+ prodotto.getId() +"\"/>\n" +
                         "  <input class=\"btn btn-primary\" type=\"submit\" value=\"Rimuovi Prodotto\">\n" +
                         "</form>" +
                         "</td></tr>"

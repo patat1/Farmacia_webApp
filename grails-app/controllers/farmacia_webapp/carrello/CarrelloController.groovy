@@ -15,7 +15,7 @@ class CarrelloController {
     def emptyCart = {
         if (session.cart!=null){
             for (def prodotto : session.cart){
-                deleteFromCart(prodotto.getBarcode(), prodotto.getQuantity())
+                deleteFromCart(prodotto.getId(), prodotto.getQuantity())
             }
             session.cart.clear()
             flash.message="Carrello svuotato"

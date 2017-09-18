@@ -5,7 +5,7 @@ class cartElement{
     float price
     int id
 
-    String getId() {
+    int getId() {
         return id
     }
 
