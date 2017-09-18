@@ -49,7 +49,7 @@ class SubscriberMasterController {
         }
 
         if (flash.message==""){
-            session.newuser= params.nome+" "+params.cognome + ", Titolare di " + params.nomef + ", (Nome Utente: " + params.nome+params.cognome+ "@TF)"//usato per la conferma
+            session.newuser= params.nome+" "+params.cognome + ", Titolare di " + params.nomef + " (Nome Utente: " + params.nome+params.cognome+ "@TF)"//usato per la conferma
             new Farmacia(
                     nome: params.nomef,
                     via: params.via,
@@ -84,7 +84,7 @@ class SubscriberMasterController {
         }
 
         if (flash.message==""){
-            session.newuser= params.nome+" "+params.cognome + ", (Nome Utente: " + params.nome+params.cognome+ "@DF)"//usato per la conferma
+            session.newuser= params.nome+" "+params.cognome + " (Nome Utente: " + params.nome+params.cognome+ "@DF)"//usato per la conferma
             new Utente(
                     nome: params.nome,
                     password: params.passworda,
@@ -113,13 +113,13 @@ class SubscriberMasterController {
         }
 
         if (flash.message==""){
-            session.newuser= params.nome+" "+params.cognome + ", (Nome Utente: " + params.nome+params.cognome+ "@OB)"//usato per la conferma
+            session.newuser= params.nome+" "+params.cognome + " (Nome Utente: " + params.nome+params.cognome+ "@OB)"//usato per la conferma
             new Utente(
                     nome: params.nome,
                     password: params.passworda,
                     cognome: params.cognome,
                     username: params.nome+params.cognome+"@OB",
-                    tipo: "DF",
+                    tipo: "OB",
                     idFarmacia: session.farmacia).save()
             redirect(action: "confirmation")
         }
