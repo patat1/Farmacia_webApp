@@ -26,8 +26,8 @@ class CarrelloController {
     def deletePROD = {
         def deleteMe
         for (def product : session.cart){
-            if (product.getId()==params.id){
-                deleteFromCart(params.id, product.getQuantity())
+            if (product.getId()==Integer.parseInt(params.id)){
+                deleteFromCart(product.getId(), product.getQuantity())
                 deleteMe=product
             }
         }
