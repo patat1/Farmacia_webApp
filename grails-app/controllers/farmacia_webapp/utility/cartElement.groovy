@@ -3,18 +3,18 @@ package farmacia_webapp.utility
 class cartElement{
     int quantity
     float price
-    String barcode
+    int id
 
-    String getBarcode() {
-        return barcode
+    String getId() {
+        return id
     }
 
-    void setBarcode(String barcode) {
-        this.barcode = barcode
+    void setId(int id) {
+        this.id = id
     }
 
-    cartElement(String barcode, int quantity, float price){
-        this.barcode=barcode
+    cartElement(int id, int quantity, float price){
+        this.id=id
         this.quantity=quantity
         this.price=price
     }

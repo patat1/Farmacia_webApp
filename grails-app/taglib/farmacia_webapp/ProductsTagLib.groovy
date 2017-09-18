@@ -24,29 +24,37 @@ class ProductsTagLib {
                         "</td></tr>"
         }
     }
-/*
+
     def buyProdTable = {
         def listaProdotti
         switch (session.usertype){
             case "TF":
             case "DF":
-                listaProdotti = Prodotto.executeQuery("from Prodotto where utenteTF_FK = ? and dispon>0", [session.farmacia])
+                listaProdotti = Confezione.executeQuery("select con.idProdotto, prod.nome, prod.barcode, prod.prezzo, con.quantità from farmacia_webapp.Confezione as con, farmacia_webapp.Prodotto as prod where con.idProdotto = prod.id and con.idFarmacia = ? and con.quantità>0", [session.farmacia])
                 break
             case "OB":
-                listaProdotti = Prodotto.executeQuery("from Prodotto where utenteTF_FK = ? and tipo = false and dispon>0", [session.farmacia])
+                listaProdotti = Confezione.executeQuery("select con.idProdotto, prod.nome, prod.barcode, prod.prezzo, con.quantità from farmacia_webapp.Confezione as con, farmacia_webapp.Prodotto as prod where con.idProdotto = prod.id and con.idFarmacia = ? and con.quantità>0 and prod.ricetta=false", [session.farmacia])
                 break
         }
-        if (listaProdotti!=null)
+        if (listaProdotti.size()>0)
             for (def prodotto : listaProdotti){
-                out << "<tr><td>"+ prodotto.getNome() + "</td>" +
-                        "<td>"+ prodotto.getCodice() + "</td>" +
-                        "<td>"+ prodotto.getPrezzo() + "€</td>" +
-                        "<td>"+ prodotto.getDispon() + "</td>" +
+                /*
+                 prodotto:
+                 -0= id
+                 -1= Nome
+                 -2= Codice a Barre
+                 -3= Prezzo
+                 -4= Quantità
+                 */
+                out << "<tr><td>"+ prodotto.getAt(1) + "</td>" +
+                        "<td>"+ prodotto.getAt(2) + "</td>" +
+                        "<td>"+ prodotto.getAt(3) + "€</td>" +
+                        "<td>"+ prodotto.getAt(4) + "</td>" +
                         "<td>" +
                         "<form action=\"buyPROD\" controller=\"ProductEditorController.groovy\">\n" +
-                        "  <input type=\"number\" min=\"1\" max=\""+ prodotto.getDispon() +"\" value=\"0\" class=\"form-control\" name=\"quantity\"/>\n" +
-                        "  <input type=\"hidden\" name=\"barcode\" value=\""+ prodotto.getCodice() +"\"/>\n" +
-                        "  <input type=\"hidden\" name=\"price\" value=\""+ prodotto.getPrezzo() +"\"/>\n" +
+                        "  <input type=\"number\" min=\"1\" max=\""+ prodotto.getAt(4) +"\" value=\"0\" class=\"form-control\" name=\"quantity\"/>\n" +
+                        "  <input type=\"hidden\" name=\"id\" value=\""+ prodotto.getAt(0) +"\"/>\n" +
+                        "  <input type=\"hidden\" name=\"price\" value=\""+ prodotto.getAt(3) +"\"/>\n" +
                         "  <input class=\"btn btn-primary\" type=\"submit\" value=\"Ordina\">\n" +
                         "</form>" +
                         "</td></tr>"
@@ -64,10 +72,10 @@ class ProductsTagLib {
                         "<td>"+ prodotto.getQuantity() + "</td>" +
                         "<td>" +
                         "<form action=\"deletePROD\" controller=\"CarrelloController.groovy\">\n" +
-                        "  <input type=\"hidden\" name=\"barcode\" value=\""+ p.getCodice() +"\"/>\n" +
+                        "  <input type=\"hidden\" name=\"id\" value=\""+ p.getCodice() +"\"/>\n" +
                         "  <input class=\"btn btn-primary\" type=\"submit\" value=\"Rimuovi Prodotto\">\n" +
                         "</form>" +
                         "</td></tr>"
             }
-    }*/
+    }
 }

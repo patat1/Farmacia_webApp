@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Elenco dei prodotti</h1>
+                <h1>Prodotti in magazzino:</h1>
                 <g:if test="${flash.message}">
                     <div class="alert alert-dismissable alert-info">${flash.message}</div>
                 </g:if>

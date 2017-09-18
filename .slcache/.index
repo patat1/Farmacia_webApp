@@ -4894,3 +4894,17 @@ n:311:org/codehaus/groovy/grails/orm/support/TransactionManagerAware
 n:1411:grails/transaction/Transactional
 n:1649:org/springframework/transaction/annotation/Propagation
 n:1539:org/springframework/transaction/annotation/Isolation
+n:656:org/codehaus/groovy/runtime/dgm$963
+n:1192:groovy/lang/GroovyClassLoader$2
+n:2695:script15057284301921089248066
+n:2509:script15057284301921089248066$_run_closure1
+n:2722:script15057284301921089248066$_run_closure2
+n:2707:script15057284301921089248066$_run_closure3
+n:2465:script15057284301921089248066$_run_closure3$_closure4
+n:2345:script15057284301921089248066$_run_closure3$_closure4$_closure7
+n:2465:script15057284301921089248066$_run_closure3$_closure5
+n:2345:script15057284301921089248066$_run_closure3$_closure5$_closure8
+n:2465:script15057284301921089248066$_run_closure3$_closure6
+n:2345:script15057284301921089248066$_run_closure3$_closure6$_closure9
+n:3546:org/codehaus/groovy/grails/plugins/DomainClassGrailsPlugin$_closure4$_closure37
+n:2608:org/codehaus/groovy/grails/plugins/DomainClassGrailsPlugin$_closure4$_closure37$_closure38

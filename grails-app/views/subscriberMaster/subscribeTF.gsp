@@ -106,7 +106,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-2">
-                            <label for="street" class="control-label">Via</label>
+                            <label for="street" class="control-label">Indirizzo completo</label>
                         </div>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="street" placeholder="Via completa" name="via">

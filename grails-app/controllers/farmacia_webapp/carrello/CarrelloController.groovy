@@ -1,5 +1,6 @@
 package farmacia_webapp.carrello
 
+import farmacia_webapp.Confezione
 import farmacia_webapp.Prodotto
 import farmacia_webapp.utility.cartElement
 
@@ -7,8 +8,8 @@ class CarrelloController {
 
     def index() { }
 
-    def deleteFromCart(String code, int quantity) {
-        Prodotto.executeUpdate("update Prodotto set dispon = dispon + ? where codice = ? AND utenteTF_FK = ?", [quantity, code, session.farmacia])
+    def deleteFromCart(int code, int quantity) {
+        Confezione.executeUpdate("update Confezione set quantità = quantità + ? where idProdotto = ? AND idFarmacia = ?", [quantity, code, session.farmacia])
     }
 
     def emptyCart = {
@@ -25,8 +26,8 @@ class CarrelloController {
     def deletePROD = {
         def deleteMe
         for (def product : session.cart){
-            if (product.getBarcode()==params.barcode){
-                deleteFromCart(params.barcode, product.getQuantity())
+            if (product.getId()==params.id){
+                deleteFromCart(params.id, product.getQuantity())
                 deleteMe=product
             }
         }
