@@ -35,7 +35,7 @@
 <div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-5">
                 <h1>Prodotti nel Carrello</h1>
                 <g:if test="${flash.message}">
                     <div class="alert alert-dismissable alert-info">${flash.message}</div>
@@ -58,11 +58,10 @@
             </thead>
         </table>
     </div>
-</div>
-<div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-5">
+                <g:showCartPrice/>
                 <a class="btn btn-primary">Acquista</a>
                 <form action="emptyCart" controller="CarrelloController.groovy">
                     <input class="btn btn-danger" type="submit" value="Svuota il carrello"></form>

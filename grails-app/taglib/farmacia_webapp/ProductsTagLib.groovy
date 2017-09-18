@@ -77,4 +77,13 @@ class ProductsTagLib {
                         "</td></tr>"
             }
     }
+
+    def showCartPrice = {
+        float total = 0
+        if (session.cart!=null)
+            for (def prodotto : session.cart){
+                total += prodotto.getPrice()*prodotto.getQuantity()
+            }
+        out << "<h3>Totale " + total + "€</h3>"
+    }
 }
