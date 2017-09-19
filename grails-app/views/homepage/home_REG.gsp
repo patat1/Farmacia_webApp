@@ -57,7 +57,7 @@
                         <h1>Operazioni disponibili per la Regione:</h1>
                         <div class="row">
                             <div class="col-md-12">
-                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeTF.gsp">Registra un Titolare di Farmacia</a>
+                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeTF.gsp">Registra una Farmacia e il suo Titolare</a>
                             </div>
                         </div>
                         <div class="row">

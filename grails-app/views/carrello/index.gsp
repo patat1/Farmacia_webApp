@@ -62,7 +62,8 @@
         <div class="row">
             <div class="col-md-5">
                 <g:showCartPrice/>
-                <a class="btn btn-primary">Acquista</a>
+                <form action="buyPROD" controller="CarrelloController.groovy">
+                    <input class="btn btn-primary" type="submit" value="Completa l'acquisto"></form>
                 <form action="emptyCart" controller="CarrelloController.groovy">
                     <input class="btn btn-danger" type="submit" value="Svuota il carrello"></form>
             </div>
