@@ -31,7 +31,7 @@ class MainMenuTagLib {
                     "                <a href=\"" + homeURL + "\">Home</a>\n" +
                     "              </li>\n" +
                     "              <li>\n" +
-                    "                <a href=\"#\">Messaggi</a>\n" +
+                    "                <a href=\"../messaggi/inbox.gsp\">Messaggi</a>\n" +
                     "              </li>\n" +
                     "            </ul>\n" +
                     "          </div>\n" +
@@ -48,7 +48,7 @@ class MainMenuTagLib {
                     "                <a href=\"" + homeURL + "\">Home</a>\n" +
                     "              </li>\n" +
                     "              <li>\n" +
-                    "                <a href=\"#\">Messaggi</a>\n" +
+                    "                <a href=\"../messaggi/inbox.gsp\">Messaggi</a>\n" +
                     "              </li>\n" +
                     "              <li>\n" +
                     "                <a href=\"../carrello/index.gsp\">Carrello</a>\n" +

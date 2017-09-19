@@ -9,7 +9,7 @@
 <html>
 <head>
     <link rel="icon" href="../images/icon.png">
-    <title>Registrazione Prodotto</title>
+    <title>Carrello</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
