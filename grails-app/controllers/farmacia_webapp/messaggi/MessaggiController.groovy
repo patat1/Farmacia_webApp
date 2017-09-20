@@ -20,17 +20,23 @@ class MessaggiController {
     }
 
     def send = {
-        Date dt = new Date()
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm")
-        String currentTime = sdf.format(dt)
-        def idDest = Utente.executeQuery("from Utente where username = ?", [params.destinatario]).get(0).getId()
-        new Messaggio(
-                idDestinatario: idDest,
-                idMittente: session.user,
-                data: currentTime,
-                corpoMessaggio: params.messaggio
-        ).save()
-        flash.message = "Messaggio per " + params.destinatario + " inviato!"
-        redirect(action: "inbox")
+        if (params.destinatario=="" || params.messaggio==""){
+            flash.message="Riempire tutti i campi"
+            redirect(action: "write")
+        } else {
+            Date dt = new Date()
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm")
+            String currentTime = sdf.format(dt)
+            def idDest = Utente.executeQuery("from Utente where username = ?", [params.destinatario]).get(0).getId()
+            new Messaggio(
+                    idDestinatario: idDest,
+                    idMittente: session.user,
+                    data: currentTime,
+                    corpoMessaggio: params.messaggio
+            ).save()
+            flash.message = "Messaggio per " + params.destinatario + " inviato!"
+            redirect(action: "inbox")
+        }
+
     }
 }

@@ -13,7 +13,7 @@ class MessagesTagLib {
                         "<td>"+ messaggio.getCorpoMessaggio() + "</td>" +
                         "<td>" +
                         "<form action=\"write\" controller=\"MessaggiController.groovy\">\n" +
-                        "  <input type=\"hidden\" name=\"destinatario\" value=\""+ messaggio.getIdMittente() +"\"/>\n" +
+                        "  <input type=\"hidden\" name=\"destinatario\" value=\""+ mittente.getUsername() +"\"/>\n" +
                         "  <input class=\"btn btn-primary\" type=\"submit\" value=\"Rispondi\">\n" +
                         "</form>" +
                         "</td></tr>"

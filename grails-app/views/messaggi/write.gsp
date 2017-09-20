@@ -50,9 +50,16 @@
             <div class="col-md-5">
                 <form class="form-horizontal" role="form" action="send" controller="MessaggiController.groovy">
                     <div class="form-group">
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="destinatario" placeholder="Destinatario">
-                        </div>
+                        <g:if test="${params.destinatario}">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" value="${params.destinatario}" name="destinatario" placeholder="Destinatario">
+                            </div>
+                        </g:if>
+                        <g:else>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="destinatario" placeholder="Destinatario">
+                            </div>
+                        </g:else>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
