@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <h1>Nuovo Messaggio</h1>
+                <h1>Messaggi Inviati</h1>
                 <g:if test="${flash.message}">
                     <div class="alert alert-dismissable alert-info">${flash.message}</div>
                 </g:if>
@@ -47,18 +47,28 @@
 <div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-md-5">
-                <g:if test="${session.usertype=="REG"}">
-                    <g:writeFromReg/>
-                </g:if>
-                <g:elseif test="${session.usertype=="TF"}">
-                    <g:writeFromTf/>
-                </g:elseif>
-                <g:else>
-                    <g:writeFromRandom/>
-                </g:else>
+            <div class="col-md-12">
+                <div class="btn-group">
+                    <a href="../messaggi/inbox.gsp" class="btn btn-default">Ricevuti</a>
+                    <a href="../messaggi/sent.gsp" class="btn btn-default">Inviati</a>
+                    <a href="../messaggi/write.gsp" class="btn btn-primary">Scrivi Messaggio</a>
+                </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="section">
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Destinatario</th>
+                <th>Data</th>
+                <th>Messaggio</th>
+            </tr>
+            <g:sentTable/>
+            </thead>
+        </table>
     </div>
 </div>
 </body>

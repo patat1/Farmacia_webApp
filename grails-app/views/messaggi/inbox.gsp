@@ -36,7 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <h1>Messaggi</h1>
+                <h1>Messaggi Ricevuti</h1>
                 <g:if test="${flash.message}">
                     <div class="alert alert-dismissable alert-info">${flash.message}</div>
                 </g:if>
@@ -50,7 +50,7 @@
             <div class="col-md-12">
                 <div class="btn-group">
                     <a href="../messaggi/inbox.gsp" class="btn btn-default">Ricevuti</a>
-                    <a href="#" class="btn btn-default">Inviati</a>
+                    <a href="../messaggi/sent.gsp" class="btn btn-default">Inviati</a>
                     <a href="../messaggi/write.gsp" class="btn btn-primary">Scrivi Messaggio</a>
                 </div>
             </div>
