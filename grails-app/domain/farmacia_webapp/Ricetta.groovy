@@ -2,7 +2,7 @@ package farmacia_webapp
 
 class Ricetta {
     int id
-    String codice
+    String data
     int idMedico
     int idScontrino
 

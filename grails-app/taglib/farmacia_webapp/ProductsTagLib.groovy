@@ -79,8 +79,12 @@ class ProductsTagLib {
                         "<form action=\"deletePROD\" controller=\"CarrelloController.groovy\">\n" +
                         "  <input type=\"hidden\" name=\"id\" value=\""+ prodotto.getId() +"\"/>\n" +
                         "  <input class=\"btn btn-primary\" type=\"submit\" value=\"Rimuovi Prodotto\">\n" +
-                        "</form>" +
-                        "</td></tr>"
+                        "</form>"
+                if (p.getRicetta()){
+                    session.idRecipeProd = prodotto.getId()
+                    out << "<a class=\"btn btn-danger\" href=\"../recipe/index.gsp\">Registra ricetta</a>"
+                }
+                out << "</td></tr>"
             }
     }
 
