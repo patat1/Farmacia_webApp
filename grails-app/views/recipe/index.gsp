@@ -33,24 +33,35 @@
     </div>
 </div>
 <g:menuMain/>
-<div class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Dati del Paziente</h3>
-                <g:if test="${flash.message}">
+
+<g:if test="${flash.message}">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
                     <div class="alert alert-dismissable alert-warning">
                         ${flash.message}</div>
-                </g:if>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</g:if>
+
 <div class="section">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <form class="form-horizontal" role="form" action="addRecipe" controller="RecipeController.groovy">
+                    <g:if test="${session.customer==null}">
+                    <div class="section">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Dati del Paziente</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-sm-2">
                             <label for="name" class="control-label">Nome</label>
@@ -83,7 +94,7 @@
                             <input type="text" class="form-control" id="cf" placeholder="Codice Fiscale" name="codfisc">
                         </div>
                     </div>
-
+                </g:if>
                     <div class="section">
                         <div class="container">
                             <div class="row">
@@ -111,7 +122,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">Procedi con la registrazione
+                            <button type="submit" class="btn btn-default">Registra la ricetta
                                 <i class="fa fa-fw fa-angle-right"></i>
                             </button>
                         </div>

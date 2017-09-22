@@ -69,7 +69,7 @@ class ProductsTagLib {
         if (session.cart!=null)
             for (def prodotto : session.cart){
                 def p = listaProdotti = Prodotto.executeQuery("from Prodotto where id = ?", [prodotto.getId()]).get(0)
-                if (p.getRicetta())
+                if (prodotto.getRecipe())
                     out << "<tr><td class=\"text-info\">"+ p.getNome() + "</td>"
                 else
                     out << "<tr><td>"+ p.getNome() + "</td>"
@@ -80,7 +80,7 @@ class ProductsTagLib {
                         "  <input type=\"hidden\" name=\"id\" value=\""+ prodotto.getId() +"\"/>\n" +
                         "  <input class=\"btn btn-primary\" type=\"submit\" value=\"Rimuovi Prodotto\">\n" +
                         "</form>"
-                if (p.getRicetta()){
+                if (prodotto.getRecipe()){
                     session.idRecipeProd = prodotto.getId()
                     out << "<a class=\"btn btn-danger\" href=\"../recipe/index.gsp\">Registra ricetta</a>"
                 }

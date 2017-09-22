@@ -62,6 +62,11 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
+                                <a class="btn btn-block btn-lg btn-primary" href="../subscriberMaster/subscribeMedico.gsp">Registra un Medico</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <a class="btn btn-block btn-lg btn-primary" href="../productEditor/adder.gsp">Registra un Prodotto nel Catalogo</a>
                             </div>
                         </div>

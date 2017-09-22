@@ -1,6 +1,7 @@
 package farmacia_webapp.login_subscribe
 
 import farmacia_webapp.Farmacia
+import farmacia_webapp.Medico
 import farmacia_webapp.Utente
 
 class SubscriberMasterController {
@@ -24,6 +25,15 @@ class SubscriberMasterController {
     def subscribeOB() {
         if (session.usertype != "TF"){
             flash.message="Errore: login come Titolare non effettuato"
+            session.user=null
+            session.usertype=null
+            redirect (action: "login", controller: "login")
+        }
+    }
+
+    def subscribeMedico() {
+        if (session.usertype != "REG"){
+            flash.message="Errore: login come Regione non effettuato"
             session.user=null
             session.usertype=null
             redirect (action: "login", controller: "login")
@@ -121,6 +131,28 @@ class SubscriberMasterController {
                     username: params.nome+params.cognome+"@OB",
                     tipo: "OB",
                     idFarmacia: session.farmacia).save()
+            redirect(action: "confirmation")
+        }
+    }
+
+    def subMed = {
+        flash.message=""
+        if (params.nome=="" || params.cognome==""
+                ||params.codereg==""){
+            flash.message= flash.message + "Errore: Riempire tutti i campi"
+            redirect(action: "subscribeMedico")
+        }
+        if (Medico.executeQuery("from Medico where codiceRegionale = ?", [params.codereg])){
+            flash.message= flash.message + "Errore: il medico risulta già registrato"
+            redirect(action: "subscribeMedico")
+        }
+
+        if (flash.message==""){
+            session.newuser= "Medico" + params.nome+" "+params.cognome//usato per la conferma
+            new Medico(
+                    nome: params.nome,
+                    cognome: params.cognome,
+                    codiceRegionale: params.codereg).save()
             redirect(action: "confirmation")
         }
     }
