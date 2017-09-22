@@ -148,7 +148,7 @@ class SubscriberMasterController {
         }
 
         if (flash.message==""){
-            session.newuser= "Medico" + params.nome+" "+params.cognome//usato per la conferma
+            session.newuser= "Medico " + params.nome+" "+params.cognome//usato per la conferma
             new Medico(
                     nome: params.nome,
                     cognome: params.cognome,

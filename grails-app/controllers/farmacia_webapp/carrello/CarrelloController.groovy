@@ -3,6 +3,8 @@ package farmacia_webapp.carrello
 import farmacia_webapp.Acquisto
 import farmacia_webapp.Confezione
 import farmacia_webapp.InScontrino
+import farmacia_webapp.Paziente
+import farmacia_webapp.Ricetta
 
 import java.text.SimpleDateFormat
 
@@ -39,15 +41,18 @@ class CarrelloController {
     }
 
     def buyPROD = {
+        boolean warning = false
         if (session.cart!=null){
-            for (def prodotto : session.cart){
-                if (prodotto.getRecipe()){
-                    flash.message="Attenzione: Ricetta non registrata per alcuni prodotti"
-                    redirect(action: "index")
+            for (def prodotto : session.cart) {
+                if (prodotto.getRecipe()) {
+                    warning = true
                 }
-                else
-                    redirect(action: "completePurchase")
             }
+            if (warning){
+                flash.message="Attenzione: Ricetta non registrata per alcuni prodotti"
+                redirect(action: "index")
+            } else
+                redirect(action: "completePurchase")
         }
     }
 
@@ -55,9 +60,15 @@ class CarrelloController {
         Date dt = new Date()
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm")
         String currentTime = sdf.format(dt)
+        def customer
+        if (session.customer!=null)
+            customer = session.customer
+        else
+            customer = Paziente.executeQuery("from Paziente where codiceFiscale=?", ["X"]).get(0).getId()
         new Acquisto(
                 data: currentTime,
-                idUtente: session.user
+                idUtente: session.user,
+                idPaziente: customer
         ).save()
         int id_acquisto = Acquisto.executeQuery("from Acquisto where data = ? and idUtente = ?", [currentTime, session.user]).get(0).getId()
         for (def prodotto : session.cart){
@@ -67,7 +78,20 @@ class CarrelloController {
                     quantità: prodotto.getQuantity()
             ).save()
         }
+        if (session.recipe!=null){
+            for (def rec : session.recipe){
+                def idInScontrino = InScontrino.executeQuery("from InScontrino where idProdotto = ? and idAcquisto = ?", [rec.getIdProd(), id_acquisto]).get(0).getId()
+                new Ricetta(
+                        idScontrino: idInScontrino,
+                        idMedico: rec.getIdMedico(),
+                        data: rec.getData()
+                ).save()
+            }
+            session.recipe.clear()
+            session.recipe=null
+        }
         session.cart.clear()
+        session.customer=null
         flash.message="Acquisto completato!"
         redirect(action: "index")
     }
