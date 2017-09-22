@@ -4,6 +4,7 @@ import farmacia_webapp.utility.cartElement
 
 class ProductsTagLib {
     static defaultEncodeAs = "raw"
+
     def prodtable = {
         def listaProdotti = Prodotto.executeQuery("from Prodotto")
         if (listaProdotti!=null)
@@ -30,10 +31,10 @@ class ProductsTagLib {
         switch (session.usertype){
             case "TF":
             case "DF":
-                listaProdotti = Confezione.executeQuery("select con.idProdotto, prod.nome, prod.barcode, prod.prezzo, con.quantità from farmacia_webapp.Confezione as con, farmacia_webapp.Prodotto as prod where con.idProdotto = prod.id and con.idFarmacia = ? and con.quantità>0", [session.farmacia])
+                listaProdotti = Confezione.executeQuery("select con.idProdotto, prod.nome, prod.barcode, prod.prezzo, con.quantità, prod.ricetta from farmacia_webapp.Confezione as con, farmacia_webapp.Prodotto as prod where con.idProdotto = prod.id and con.idFarmacia = ? and con.quantità>0", [session.farmacia])
                 break
             case "OB":
-                listaProdotti = Confezione.executeQuery("select con.idProdotto, prod.nome, prod.barcode, prod.prezzo, con.quantità from farmacia_webapp.Confezione as con, farmacia_webapp.Prodotto as prod where con.idProdotto = prod.id and con.idFarmacia = ? and con.quantità>0 and prod.ricetta=false", [session.farmacia])
+                listaProdotti = Confezione.executeQuery("select con.idProdotto, prod.nome, prod.barcode, prod.prezzo, con.quantità, prod.ricetta  from farmacia_webapp.Confezione as con, farmacia_webapp.Prodotto as prod where con.idProdotto = prod.id and con.idFarmacia = ? and con.quantità>0 and prod.ricetta=false", [session.farmacia])
                 break
         }
         if (listaProdotti.size()>0)
@@ -45,6 +46,7 @@ class ProductsTagLib {
                  -2= Codice a Barre
                  -3= Prezzo
                  -4= Quantità
+                 -5= Ricetta
                  */
                 out << "<tr><td>"+ prodotto.getAt(1) + "</td>" +
                         "<td>"+ prodotto.getAt(2) + "</td>" +
@@ -55,6 +57,7 @@ class ProductsTagLib {
                         "  <input type=\"number\" min=\"1\" max=\""+ prodotto.getAt(4) +"\" value=\"0\" class=\"form-control\" name=\"quantity\"/>\n" +
                         "  <input type=\"hidden\" name=\"id\" value=\""+ prodotto.getAt(0) +"\"/>\n" +
                         "  <input type=\"hidden\" name=\"price\" value=\""+ prodotto.getAt(3) +"\"/>\n" +
+                        "  <input type=\"hidden\" name=\"recipe\" value=\""+ prodotto.getAt(5) +"\"/>\n" +
                         "  <input class=\"btn btn-primary\" type=\"submit\" value=\"Ordina\">\n" +
                         "</form>" +
                         "</td></tr>"
@@ -66,8 +69,11 @@ class ProductsTagLib {
         if (session.cart!=null)
             for (def prodotto : session.cart){
                 def p = listaProdotti = Prodotto.executeQuery("from Prodotto where id = ?", [prodotto.getId()]).get(0)
-                out << "<tr><td>"+ p.getNome() + "</td>" +
-                        "<td>"+ prodotto.getPrice() + "€</td>" +
+                if (p.getRicetta())
+                    out << "<tr><td class=\"text-info\">"+ p.getNome() + "</td>"
+                else
+                    out << "<tr><td>"+ p.getNome() + "</td>"
+                out << "<td>"+ prodotto.getPrice() + "€</td>" +
                         "<td>"+ prodotto.getQuantity() + "</td>" +
                         "<td>" +
                         "<form action=\"deletePROD\" controller=\"CarrelloController.groovy\">\n" +

@@ -69,11 +69,11 @@ class ProductEditorController {
         }
         for (def prod : session.cart)
             if (prod.getId()==Integer.parseInt(params.id)){
-                e = new cartElement(Integer.parseInt(params.id), Integer.parseInt(params.quantity) + prod.getQuantity(), Float.parseFloat(params.price))
+                e = new cartElement(Integer.parseInt(params.id), Integer.parseInt(params.quantity) + prod.getQuantity(), Float.parseFloat(params.price), Boolean.parseBoolean(params.recipe))
                 delete=prod
             }
         if (e==null)
-            e = new cartElement(Integer.parseInt(params.id), Integer.parseInt(params.quantity), Float.parseFloat(params.price))
+            e = new cartElement(Integer.parseInt(params.id), Integer.parseInt(params.quantity), Float.parseFloat(params.price), Boolean.parseBoolean(params.recipe))
         session.cart.remove(delete)
         session.cart.add(e)
         Confezione.executeUpdate("update Confezione set quantità = quantità - ? where idProdotto = ? AND idFarmacia = ?", [Integer.parseInt(params.quantity), Integer.parseInt(params.id), session.farmacia])

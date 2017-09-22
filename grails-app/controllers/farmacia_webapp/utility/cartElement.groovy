@@ -5,6 +5,15 @@ class cartElement{
     float price
     int id
 
+    boolean getRecipe() {
+        return recipe
+    }
+
+    void setRecipe(boolean recipe) {
+        this.recipe = recipe
+    }
+    boolean recipe
+
     int getId() {
         return id
     }
@@ -13,10 +22,11 @@ class cartElement{
         this.id = id
     }
 
-    cartElement(int id, int quantity, float price){
+    cartElement(int id, int quantity, float price, boolean recipe){
         this.id=id
         this.quantity=quantity
         this.price=price
+        this.recipe=recipe
     }
 
     int getQuantity() {
