@@ -45,7 +45,7 @@ class RecipeController {
         session.recipe.add(new recipeElement(
                 session.idRecipeProd,
                 medico.get(0).getId(),
-                params.dataR))
+                params.dataR, params.numRec))
         for (def c : session.cart)
             if(c.getId()==session.idRecipeProd)
                 c.setRecipe(false)

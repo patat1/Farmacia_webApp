@@ -18,7 +18,6 @@
 </head>
 
 <body>
-<body>
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -114,6 +113,14 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-2">
+                            <label for="numReg" class="control-label">ID della ricetta</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="numReg" placeholder="Id ricetta" name="numRec">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2">
                             <label for="creg" class="control-label">CR del Medico</label>
                         </div>
                         <div class="col-sm-10">
@@ -134,5 +141,4 @@
 </div>
 </body>
 
-</body>
 </html>

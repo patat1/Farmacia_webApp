@@ -1,9 +1,9 @@
 package farmacia_webapp.utility
 
 class cartElement{
-    int quantity
-    float price
-    int id
+    private int quantity
+    private float price
+    private int id
 
     boolean getRecipe() {
         return recipe

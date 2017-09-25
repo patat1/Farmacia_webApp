@@ -103,7 +103,8 @@ class CarrelloController {
                 new Ricetta(
                         idScontrino: idInScontrino,
                         idMedico: rec.getIdMedico(),
-                        data: rec.getData()
+                        data: rec.getData(),
+                        codiceRicetta: rec.getCodice()
                 ).save()
             }
             session.recipe.clear()

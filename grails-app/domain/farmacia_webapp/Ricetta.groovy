@@ -5,6 +5,7 @@ class Ricetta {
     String data
     int idMedico
     int idScontrino
+    String codiceRicetta
 
     static constraints = {
     }

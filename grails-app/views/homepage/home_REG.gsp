@@ -67,6 +67,11 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
+                                <a class="btn btn-block btn-lg btn-primary" href="../statistic/index.gsp">Ottieni statistiche sulle vendite</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <a class="btn btn-block btn-lg btn-primary" href="../productEditor/adder.gsp">Registra un Prodotto nel Catalogo</a>
                             </div>
                         </div>
