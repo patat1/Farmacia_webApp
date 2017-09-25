@@ -36,6 +36,7 @@ class CarrelloController {
             if (session.recipe!=null){
                 session.recipe.clear()
                 session.recipe=null
+                session.customer=null
             }
             flash.message="Carrello svuotato"
         }
@@ -52,6 +53,8 @@ class CarrelloController {
             }
         }
         session.cart.remove(deleteMe)
+        if (session.cart.size()==0)
+            session.customer=null
         flash.message="Prodotto eliminato"
         redirect(action: "index")
     }
@@ -74,7 +77,7 @@ class CarrelloController {
 
     def completePurchase = {
         Date dt = new Date()
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm")
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd")
         String currentTime = sdf.format(dt)
         def customer
         if (session.customer!=null)

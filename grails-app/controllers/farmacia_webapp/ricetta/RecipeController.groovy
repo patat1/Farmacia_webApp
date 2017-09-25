@@ -10,6 +10,7 @@ class RecipeController {
     def index() { }
 
     def addRecipe = {
+        //Il cliente viene registrato solo la prima volta, fino al termine dell'aquisto
         if (session.customer==null){
             if (params.nome=="" || params.cognome=="" || params.data=="" || params.codfisc==""){
                 flash.message="Errore: campi dell'utente incompleti"
@@ -28,6 +29,7 @@ class RecipeController {
                 session.customer=Paziente.executeQuery("from Paziente where codiceFiscale = ?", [params.codfisc]).get(0).getId()
             }
         }
+        //controllo medico+ricetta
         if (params.dataR=="" || params.codiceReg==""){
             flash.message="Errore: campi della ricetta incompleti"
             redirect (action: "index")
