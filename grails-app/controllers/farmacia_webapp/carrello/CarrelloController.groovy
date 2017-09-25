@@ -16,12 +16,27 @@ class CarrelloController {
         Confezione.executeUpdate("update Confezione set quantità = quantità + ? where idProdotto = ? AND idFarmacia = ?", [quantity, code, session.farmacia])
     }
 
+    def deleteFromRecipe(int code) {
+        def delete
+        if (session.recipe!=null){
+            for (def rec : session.recipe)
+                if (rec.getIdProd()==code){
+                    delete = rec
+                }
+            session.recipe.remove(delete)
+        }
+    }
+
     def emptyCart = {
         if (session.cart!=null){
             for (def prodotto : session.cart){
                 deleteFromCart(prodotto.getId(), prodotto.getQuantity())
             }
             session.cart.clear()
+            if (session.recipe!=null){
+                session.recipe.clear()
+                session.recipe=null
+            }
             flash.message="Carrello svuotato"
         }
         redirect(action: "index")
@@ -32,6 +47,7 @@ class CarrelloController {
         for (def product : session.cart){
             if (product.getId()==Integer.parseInt(params.id)){
                 deleteFromCart(product.getId(), product.getQuantity())
+                deleteFromRecipe(product.getId())
                 deleteMe=product
             }
         }

@@ -69,7 +69,7 @@ class ProductEditorController {
         }
         for (def prod : session.cart)
             if (prod.getId()==Integer.parseInt(params.id)){
-                e = new cartElement(Integer.parseInt(params.id), Integer.parseInt(params.quantity) + prod.getQuantity(), Float.parseFloat(params.price), Boolean.parseBoolean(params.recipe))
+                e = new cartElement(prod.getId(), Integer.parseInt(params.quantity) + prod.getQuantity(), prod.getPrice(), prod.getRecipe())
                 delete=prod
             }
         if (e==null)
