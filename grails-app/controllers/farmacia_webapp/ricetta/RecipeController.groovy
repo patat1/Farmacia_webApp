@@ -26,79 +26,28 @@ class RecipeController {
                         codiceFiscale: params.codfisc
                 ).save()
                 session.customer=Paziente.executeQuery("from Paziente where codiceFiscale = ?", [params.codfisc]).get(0).getId()
-
-
-                if (params.dataR=="" || params.codiceReg==""){
-                    flash.message="Errore: campi della ricetta incompleti"
-                    redirect (action: "index")
-                }
-                if (session.recipe==null){
-                    def r = new ArrayList<recipeElement>()
-                    session.recipe=r
-                }
-                def medico=Medico.executeQuery("from Medico where codiceRegionale=?", [params.codiceReg])
-                if(medico.size()==0){
-                    flash.message="Errore: il medico non risulta registrato"
-                    redirect (action: "index")
-                }
-                def rec = new recipeElement(session.idRecipeProd,
-                        medico.get(0).getId(),
-                        params.dataR)
-                session.recipe.add(rec)
-                flash.message="Ricetta registrata"
-                for (def c : session.cart)
-                    if(c.getId()==session.idRecipeProd)
-                        c.setRecipe(false)
-                redirect (controller: "carrello", action: "index")
             }
-        }else{
-            if (params.dataR=="" || params.codiceReg==""){
-                flash.message="Errore: campi della ricetta incompleti"
-                redirect (action: "index")
-            }
-            if (session.recipe==null){
-                def r = new ArrayList<recipeElement>()
-                session.recipe=r
-            }
-            def medico=Medico.executeQuery("from Medico where codiceRegionale=?", [params.codiceReg])
-            if(medico.size()==0){
-                flash.message="Errore: il medico non risulta registrato"
-                redirect (action: "index")
-            }
-            def rec = new recipeElement(session.idRecipeProd,
-                    medico.get(0).getId(),
-                    params.dataR)
-            session.recipe.add(rec)
-            flash.message="Ricetta registrata"
-            for (def c : session.cart)
-                if(c.getId()==session.idRecipeProd)
-                    c.setRecipe(false)
-            redirect (controller: "carrello", action: "index")
         }
-    }
-
-    def recipeAdder ={
         if (params.dataR=="" || params.codiceReg==""){
             flash.message="Errore: campi della ricetta incompleti"
             redirect (action: "index")
         }
         if (session.recipe==null){
-            def r = new ArrayList<recipeElement>()
-            session.recipe=r
+            session.recipe = new ArrayList<recipeElement>()
         }
-        def medico=Medico.executeQuery("from Medico where codiceRegionale=?", [params.codiceReg])
+        def medico = Medico.executeQuery("from Medico where codiceRegionale=?", [params.codiceReg])
         if(medico.size()==0){
             flash.message="Errore: il medico non risulta registrato"
             redirect (action: "index")
         }
-        def rec = new recipeElement(session.idRecipeProd,
+        session.recipe.add(new recipeElement(
+                session.idRecipeProd,
                 medico.get(0).getId(),
-                params.dataR)
-        session.recipe.add(rec)
-        flash.message="Ricetta registrata"
+                params.dataR))
         for (def c : session.cart)
             if(c.getId()==session.idRecipeProd)
                 c.setRecipe(false)
+        flash.message="Ricetta registrata"
         redirect (controller: "carrello", action: "index")
     }
 }
