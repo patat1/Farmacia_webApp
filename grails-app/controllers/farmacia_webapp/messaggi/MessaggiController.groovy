@@ -8,15 +8,24 @@ import java.text.SimpleDateFormat
 class MessaggiController {
 
     def inbox() {
-
+        check()
     }
 
     def sent() {
-
+        check()
     }
 
     def write() {
+        check()
+    }
 
+    def check(){
+        if (session.usertype == null || session.user == null){
+            flash.message="Errore: login non effettuato correttamente"
+            session.user=null
+            session.usertype=null
+            redirect (action: "login", controller: "login")
+        }
     }
 
     def response = {

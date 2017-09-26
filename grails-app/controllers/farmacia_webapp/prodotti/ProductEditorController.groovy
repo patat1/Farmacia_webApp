@@ -14,7 +14,18 @@ class ProductEditorController {
         check("TF")
     }
 
-    def buyProducts() {}
+    def buyProducts() {
+        checkUser()
+    }
+
+    def checkUser(){
+        if (session.usertype == null || session.user == null){
+            flash.message="Errore: login non effettuato correttamente"
+            session.user=null
+            session.usertype=null
+            redirect (action: "login", controller: "login")
+        }
+    }
 
     def check(String type){
         if (session.usertype != type){

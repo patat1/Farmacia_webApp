@@ -7,7 +7,16 @@ import farmacia_webapp.utility.recipeElement
 
 class RecipeController {
 
-    def index() { }
+    def index() { check() }
+
+    def check(){
+        if (session.usertype == null || session.user == null){
+            flash.message="Errore: login non effettuato correttamente"
+            session.user=null
+            session.usertype=null
+            redirect (action: "login", controller: "login")
+        }
+    }
 
     def addRecipe = {
         //Il cliente viene registrato solo la prima volta, fino al termine dell'aquisto
