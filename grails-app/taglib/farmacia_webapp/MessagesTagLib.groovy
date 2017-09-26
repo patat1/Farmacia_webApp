@@ -4,7 +4,7 @@ class MessagesTagLib {
     static defaultEncodeAs = "raw"
 
     def inboxTable = {
-        def listaMessaggi = Messaggio.executeQuery("from Messaggio where idDestinatario= ?", [session.user])
+        def listaMessaggi = Messaggio.executeQuery("from Messaggio where idDestinatario= ? order by id desc", [session.user])
         if (listaMessaggi!=null)
             for (def messaggio : listaMessaggi){
                 def mittente = Utente.executeQuery("from Utente where id = ?", [messaggio.getIdMittente()]).get(0)
@@ -21,7 +21,7 @@ class MessagesTagLib {
     }
 
     def sentTable = {
-        def listaMessaggi = Messaggio.executeQuery("from Messaggio where idMittente= ?", [session.user])
+        def listaMessaggi = Messaggio.executeQuery("from Messaggio where idMittente= ? order by id desc", [session.user])
         if (listaMessaggi!=null)
             for (def messaggio : listaMessaggi){
                 def dest = Utente.executeQuery("from Utente where id = ?", [messaggio.getIdDestinatario()]).get(0)
