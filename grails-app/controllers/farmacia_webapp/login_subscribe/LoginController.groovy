@@ -15,8 +15,7 @@ class LoginController {
             session.user=result.get(0).getId()
             session.usertype=result.get(0).getTipo()
             session.userinfo=result.get(0).getNome()+" "+result.get(0).getCognome()
-            if (session.usertype!="REG")
-                session.farmacia=result.get(0).getIdFarmacia()
+            session.farmacia=result.get(0).getIdFarmacia()
             switch (result.get(0).tipo){
                 case "TF":
                     redirect(controller: 'homepage', action:'home_TF')

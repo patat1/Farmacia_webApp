@@ -6,7 +6,7 @@ class ProductsTagLib {
     static defaultEncodeAs = "raw"
 
     def prodtable = {
-        def listaProdotti = Prodotto.executeQuery("from Prodotto")
+        def listaProdotti = Prodotto.executeQuery("from Prodotto order by nome")
         if (listaProdotti!=null)
             for (def prodotto : listaProdotti){
                 def listaInMagazzino = Confezione.executeQuery("from Confezione where idProdotto = ? and idFarmacia = ?", [prodotto.getId(), session.farmacia])
@@ -31,10 +31,10 @@ class ProductsTagLib {
         switch (session.usertype){
             case "TF":
             case "DF":
-                listaProdotti = Confezione.executeQuery("select con.idProdotto, prod.nome, prod.barcode, prod.prezzo, con.quantità, prod.ricetta from farmacia_webapp.Confezione as con, farmacia_webapp.Prodotto as prod where con.idProdotto = prod.id and con.idFarmacia = ? and con.quantità>0", [session.farmacia])
+                listaProdotti = Confezione.executeQuery("select con.idProdotto, prod.nome, prod.barcode, prod.prezzo, con.quantità, prod.ricetta from farmacia_webapp.Confezione as con, farmacia_webapp.Prodotto as prod where con.idProdotto = prod.id and con.idFarmacia = ? and con.quantità>0 order by prod.nome", [session.farmacia])
                 break
             case "OB":
-                listaProdotti = Confezione.executeQuery("select con.idProdotto, prod.nome, prod.barcode, prod.prezzo, con.quantità, prod.ricetta  from farmacia_webapp.Confezione as con, farmacia_webapp.Prodotto as prod where con.idProdotto = prod.id and con.idFarmacia = ? and con.quantità>0 and prod.ricetta=false", [session.farmacia])
+                listaProdotti = Confezione.executeQuery("select con.idProdotto, prod.nome, prod.barcode, prod.prezzo, con.quantità, prod.ricetta  from farmacia_webapp.Confezione as con, farmacia_webapp.Prodotto as prod where con.idProdotto = prod.id and con.idFarmacia = ? and con.quantità>0 and prod.ricetta=false order by prod.nome", [session.farmacia])
                 break
         }
         if (listaProdotti.size()>0)
