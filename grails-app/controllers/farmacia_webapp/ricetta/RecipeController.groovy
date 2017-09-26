@@ -38,18 +38,19 @@ class RecipeController {
             session.recipe = new ArrayList<recipeElement>()
         }
         def medico = Medico.executeQuery("from Medico where codiceRegionale=?", [params.codiceReg])
-        if(medico.size()==0){
-            flash.message="Errore: il medico non risulta registrato"
+        if(medico.size()>0){
+            session.recipe.add(new recipeElement(
+                    session.idRecipeProd,
+                    medico.get(0).getId(),
+                    params.dataR, params.numRec))
+            for (def c : session.cart)
+                if(c.getId()==session.idRecipeProd)
+                    c.setRecipe(false)
+            flash.message="Ricetta registrata"
+            redirect (controller: "carrello", action: "index")
+        }else {
+            flash.message="Errore: il medico inserito non risulta registrato"
             redirect (action: "index")
         }
-        session.recipe.add(new recipeElement(
-                session.idRecipeProd,
-                medico.get(0).getId(),
-                params.dataR, params.numRec))
-        for (def c : session.cart)
-            if(c.getId()==session.idRecipeProd)
-                c.setRecipe(false)
-        flash.message="Ricetta registrata"
-        redirect (controller: "carrello", action: "index")
     }
 }
