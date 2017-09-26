@@ -84,12 +84,11 @@ class CarrelloController {
             customer = session.customer
         else
             customer = Paziente.executeQuery("from Paziente where codiceFiscale=?", ["X"]).get(0).getId()
-        new Acquisto(
+        int id_acquisto = new Acquisto(
                 data: currentTime,
                 idUtente: session.user,
                 idPaziente: customer
-        ).save()
-        int id_acquisto = Acquisto.executeQuery("from Acquisto where data = ? and idUtente = ?", [currentTime, session.user]).get(0).getId()
+        ).save().getId()
         for (def prodotto : session.cart){
             new InScontrino(
                     idAcquisto: id_acquisto,

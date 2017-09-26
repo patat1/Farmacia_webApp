@@ -37,6 +37,7 @@
         <div class="row">
             <div class="col-md-5">
                 <h1>Statistiche sulle vendite</h1>
+                <h4>Indicare le date di inizio e fine del periodo di cui si vogliono le statistiche</h4>
                 <g:if test="${flash.message}">
                     <div class="alert alert-dismissable alert-info">${flash.message}</div>
                 </g:if>
@@ -44,18 +45,54 @@
         </div>
     </div>
 </div>
-
-<div class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="media-list">
-                    <g:statisticTable/>
-                </ul>
+<g:if test="${params.start==null || params.end==null || params.start=="" || params.end==""}">
+    <div class="section">
+        <div class="container">
+            <form action="index" controller="StatisticController.groovy">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Data inizio</th>
+                        <th>Data fine</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input class="form-control" type="date" name="start">
+                        </th>
+                        <th>
+                            <input class="form-control" type="date" name="end">
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+                <button type="submit" class="btn btn-primary">Imposta</button>
+            </form>
+        </div>
+    </div>
+</g:if>
+<g:if test="${params.start!=null && params.end!=null && params.start!="" && params.end!=""}">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Dati dal ${params.start} al ${params.end}:</h4>
+                    <a class="btn btn-primary" href="../statistic/index.gsp">Reimposta periodo</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="media-list">
+                        <g:statisticTable/>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</g:if>
 </body>
 
 </html>
