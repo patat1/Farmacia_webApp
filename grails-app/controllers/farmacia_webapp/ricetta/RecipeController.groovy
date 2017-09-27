@@ -33,7 +33,8 @@ class RecipeController {
                         nome: params.nome,
                         cognome: params.cognome,
                         dataNascita: params.data,
-                        codiceFiscale: params.codfisc
+                        codiceFiscale: params.codfisc,
+                        idUtente: session.user
                 ).save()
                 session.customer=Paziente.executeQuery("from Paziente where codiceFiscale = ?", [params.codfisc]).get(0).getId()
             }

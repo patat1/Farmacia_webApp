@@ -6,6 +6,8 @@ class Paziente {
     String cognome
     String dataNascita
     String codiceFiscale
+    int idUtente
+    //id dell'utente che lo ha inserito nel DB
 
     static constraints = {
     }
