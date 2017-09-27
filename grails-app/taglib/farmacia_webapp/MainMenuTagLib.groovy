@@ -60,4 +60,26 @@ class MainMenuTagLib {
                     "    </div"
         }
     }
+
+    def header = {
+        out << "<div class=\"navbar navbar-default navbar-static-top\">\n" +
+                "    <div class=\"container\">\n" +
+                "        <div class=\"navbar-header\">\n" +
+                "            <a class=\"navbar-brand\" href=\"/Farmacia_WebApp/\"><span>Farmacie Regionali</span></a>\n" +
+                "        </div>\n" +
+                "        <g:if test=\"${session.user}\">\n" +
+                "            <div class=\"collapse navbar-collapse\" id=\"navbar-ex-collapse\">\n" +
+                "                <ul class=\"nav navbar-nav navbar-right\">\n" +
+                "                    <li>\n" +
+                "                        <a href=\"#\">Accesso come ${session.userinfo}</a>\n" +
+                "                    </li>\n" +
+                "                    <li class=\"active\">\n" +
+                "                        <a controller=\"login\" href=\"../login/logout.gsp\">Logout</a>\n" +
+                "                    </li>\n" +
+                "                </ul>\n" +
+                "            </div>\n" +
+                "        </g:if>\n" +
+                "    </div>\n" +
+                "</div>"
+    }
 }

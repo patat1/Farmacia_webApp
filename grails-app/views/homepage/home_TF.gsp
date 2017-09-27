@@ -19,37 +19,13 @@
 </head>
 
 <body>
-<div class="navbar navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/Farmacia_WebApp/"><span>Farmacie Regionali</span></a>
-        </div>
-        <g:if test="${session.user}">
-            <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#">Accesso come ${session.userinfo}</a>
-                    </li>
-                    <li class="active">
-                        <a controller="login" href="../login/logout.gsp">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </g:if>
-    </div>
-</div>
+<g:header/>
 <g:menuMain/>
 <div class="section">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img class="img-responsive" src="../images/farmacia1.jpg">
+                <img class="img-responsive" src="../images/farmacia3.jpg">
             </div>
             <div class="col-md-6">
                 <div class="row">
