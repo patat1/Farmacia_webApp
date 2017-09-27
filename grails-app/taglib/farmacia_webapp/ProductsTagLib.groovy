@@ -81,8 +81,7 @@ class ProductsTagLib {
                         "  <input class=\"btn btn-primary\" type=\"submit\" value=\"Rimuovi Prodotto\">\n" +
                         "</form>"
                 if (prodotto.getRecipe()){
-                    session.idRecipeProd = prodotto.getId()
-                    out << "<a class=\"btn btn-danger\" href=\"../recipe/index.gsp\">Registra ricetta</a>"
+                    out << "<a class=\"btn btn-danger\" href=\"../recipe/index.gsp?idRecipeProd=" + prodotto.getId() +"\">Registra ricetta</a>"
                 }
                 out << "</td></tr>"
             }

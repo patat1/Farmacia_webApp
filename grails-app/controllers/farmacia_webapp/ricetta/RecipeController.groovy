@@ -48,13 +48,13 @@ class RecipeController {
             session.recipe = new ArrayList<recipeElement>()
         }
         def medico = Medico.executeQuery("from Medico where codiceRegionale=?", [params.codiceReg])
-        if(medico.size()>0){
+        if(medico.size()>0 || medico!=null){
             session.recipe.add(new recipeElement(
-                    session.idRecipeProd,
+                    Integer.parseInt(params.idRecipeProd),
                     medico.get(0).getId(),
                     params.dataR, params.numRec))
             for (def c : session.cart)
-                if(c.getId()==session.idRecipeProd)
+                if(c.getId()==Integer.parseInt(params.idRecipeProd))
                     c.setRecipe(false)
             flash.message="Ricetta registrata"
             redirect (controller: "carrello", action: "index")

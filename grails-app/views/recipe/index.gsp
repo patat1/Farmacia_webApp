@@ -129,6 +129,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
+                            <input type="hidden" name="idRecipeProd" value="${params.idRecipeProd}">
                             <button type="submit" class="btn btn-default">Registra la ricetta
                                 <i class="fa fa-fw fa-angle-right"></i>
                             </button>
