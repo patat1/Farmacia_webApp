@@ -17,7 +17,7 @@ class StatisticsTagLib {
         else
             totaleAcquisti = Acquisto.executeQuery("from Acquisto as aq, Utente as ut where ut.idFarmacia = ? and aq.idUtente=ut.id and aq.data>= ? and aq.data<= ?", [session.farmacia, params.start, params.end]).size()
         out <<  "                        <li class=\"media\">\n" +
-                "                        <a class=\"pull-left\" href=\"#\"><img class=\"media-object\" src=\"../images/invoice.png\" height=\"64\" width=\"64\"></a>\n" +
+                "                        <a class=\"pull-left\"><img class=\"media-object\" src=\"../images/invoice.png\" height=\"64\" width=\"64\"></a>\n" +
                 "                        <div class=\"media-body\">\n" +
                 "                            <h4 class=\"media-heading\">Acquisti complessivi</h4>\n" +
                 "                            <p>" + totaleAcquisti + "</p>\n" +
@@ -32,7 +32,7 @@ class StatisticsTagLib {
             for (int i=0; i<queryOutput.size(); i++)
                 prodottiInScontrino += queryOutput.getAt(i)
         out <<  "                        <li class=\"media\">\n" +
-                "                        <a class=\"pull-left\" href=\"#\"><img class=\"media-object\" src=\"../images/pills.png\" height=\"64\" width=\"64\"></a>\n" +
+                "                        <a class=\"pull-left\"><img class=\"media-object\" src=\"../images/pills.png\" height=\"64\" width=\"64\"></a>\n" +
                 "                        <div class=\"media-body\">\n" +
                 "                            <h4 class=\"media-heading\">Farmaci venduti in totale</h4>\n" +
                 "                            <p>" + prodottiInScontrino + "</p>\n" +
@@ -44,7 +44,7 @@ class StatisticsTagLib {
             farmaciConRicetta = InScontrino.executeQuery("from InScontrino as scon, Utente as ut, Acquisto as aq, Ricetta as rc where aq.idUtente = ut.id and ut.idFarmacia = ? and scon.idAcquisto=aq.id and scon.id=rc.idScontrino and aq.data>= ? and aq.data<= ? group by scon.idProdotto", [session.farmacia, params.start, params.end]).size()
         }
         out <<  "                        <li class=\"media\">\n" +
-                "                        <a class=\"pull-left\" href=\"#\"><img class=\"media-object\" src=\"../images/doctor.png\" height=\"64\" width=\"64\"></a>\n" +
+                "                        <a class=\"pull-left\"><img class=\"media-object\" src=\"../images/doctor.png\" height=\"64\" width=\"64\"></a>\n" +
                 "                        <div class=\"media-body\">\n" +
                 "                            <h4 class=\"media-heading\">Farmaci con ricetta</h4>\n" +
                 "                            <p>" + farmaciConRicetta + "</p>\n" +
@@ -56,7 +56,7 @@ class StatisticsTagLib {
             totaleRicette = InScontrino.executeQuery("from InScontrino as scon, Utente as ut, Acquisto as aq, Ricetta as rc where aq.idUtente = ut.id and ut.idFarmacia = ? and scon.idAcquisto=aq.id and scon.id=rc.idScontrino and aq.data>= ? and aq.data<= ? group by rc.codiceRicetta", [session.farmacia, params.start, params.end]).size()
         }
         out <<  "                        <li class=\"media\">\n" +
-                "                        <a class=\"pull-left\" href=\"#\"><img class=\"media-object\" src=\"../images/stethoscope.png\" height=\"64\" width=\"64\"></a>\n" +
+                "                        <a class=\"pull-left\"><img class=\"media-object\" src=\"../images/stethoscope.png\" height=\"64\" width=\"64\"></a>\n" +
                 "                        <div class=\"media-body\">\n" +
                 "                            <h4 class=\"media-heading\">Ricette totali</h4>\n" +
                 "                            <p>" + totaleRicette + "</p>\n" +
@@ -74,7 +74,7 @@ class StatisticsTagLib {
         if (totaleRicette!=0)
             mediaProdottiPerRicetta = totaleProdotti_Ricetta/totaleRicette
         out <<  "                        <li class=\"media\">\n" +
-                "                        <a class=\"pull-left\" href=\"#\"><img class=\"media-object\" src=\"../images/media.png\" height=\"64\" width=\"64\"></a>\n" +
+                "                        <a class=\"pull-left\"><img class=\"media-object\" src=\"../images/media.png\" height=\"64\" width=\"64\"></a>\n" +
                 "                        <div class=\"media-body\">\n" +
                 "                            <h4 class=\"media-heading\">Numero medio di farmaci per ricetta</h4>\n" +
                 "                            <p>" + mediaProdottiPerRicetta + "</p>\n" +
