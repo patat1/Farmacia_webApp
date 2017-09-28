@@ -1,0 +1,11 @@
+Farmacia:
+# id, version, nome, numtel, via
+1, 0, X, X, X
+
+Paziente
+# id, version, codice_fiscale, cognome, data_nascita, nome, id_utente
+1, 0, X, X, X, X, 0
+
+Utente
+# id, version, cognome, id_farmacia, nome, password, tipo, username
+1, 0, Lombardia, 1, Regione, reg, REG, RegioneLombardia@REG
