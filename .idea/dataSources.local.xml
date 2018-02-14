@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="dataSourceStorageLocal">
-    <data-source name="FarmaciaWebAppDatabase@localhost" uuid="91eb6cdc-a93c-49f8-82ef-c030c55e2156">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
-      <introspection-schemas>*:FarmaciaWebAppDatabase</introspection-schemas>
-    </data-source>
-  </component>
-</project>
